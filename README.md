@@ -5,6 +5,7 @@ A website for finding overpaid tax returns
 http://mikemeding.github.io/fx-web/public_html/
 
 ## directory structure ##
+https://scotch.io/tutorials/angularjs-best-practices-directory-structure
 ```html
 app/
 ----- shared/   // acts as reusable components or partials of our site
