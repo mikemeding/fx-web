@@ -2,7 +2,7 @@
 A website for finding overpaid tax returns
 
 ## gh-pages deployment link ##
-http://mikemeding.github.io/fx-web/public_html/
+http://mikemeding.github.io/fx-web/public_html/index.html
 
 ## directory structure ##
 https://scotch.io/tutorials/angularjs-best-practices-directory-structure
