@@ -9,11 +9,20 @@
     Custom Global Styles
    ========================================================================== */
 
+/*main page padding*/
 body {
-	padding-top: 50px;
+	padding-top: 5px;
 	padding-bottom: 20px;
 }
 
+/*small adjustment to the navbar brand*/
+h3.h3-brand {
+    padding-right: 30px;
+    color: #ffffff;
+}
+
+/*ui bootstrap cursor hotfix*/
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 
 

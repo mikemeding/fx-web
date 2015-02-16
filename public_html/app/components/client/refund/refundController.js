@@ -14,14 +14,14 @@
     "use strict";
     angular
         .module("fxClient")
-        .controller("HomeController",
-        [HomeController]);
+        .controller("RefundController",
+        [RefundController]);
 
-    function HomeController() {
+    function RefundController() {
         var vm = this;
-        vm.title = 'Home Page';
+        vm.title = 'Apply For Refund';
 
         // create a message to display in our view
-        vm.message = 'OH YEAH! AngularJS!';
+        vm.message = 'Someone wants their money back';
     }
 }());

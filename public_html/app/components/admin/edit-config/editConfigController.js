@@ -14,14 +14,14 @@
     "use strict";
     angular
         .module("fxClient")
-        .controller("HomeController",
-        [HomeController]);
+        .controller("EditConfigController",
+        [EditConfigController]);
 
-    function HomeController() {
+    function EditConfigController() {
         var vm = this;
-        vm.title = 'Home Page';
+        vm.title = 'Edit Site';
 
         // create a message to display in our view
-        vm.message = 'OH YEAH! AngularJS!';
+        vm.message = 'Edit the site users and static content';
     }
 }());

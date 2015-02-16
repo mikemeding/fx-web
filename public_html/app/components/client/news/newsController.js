@@ -14,14 +14,14 @@
     "use strict";
     angular
         .module("fxClient")
-        .controller("HomeController",
-        [HomeController]);
+        .controller("NewsController",
+        [NewsController]);
 
-    function HomeController() {
+    function NewsController() {
         var vm = this;
-        vm.title = 'Home Page';
+        vm.title = 'News!';
 
         // create a message to display in our view
-        vm.message = 'OH YEAH! AngularJS!';
+        vm.message = 'GET YOUR NEWS! FRESH HOT NEWS!';
     }
 }());
