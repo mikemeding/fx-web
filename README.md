@@ -24,8 +24,7 @@ app/
 --------------- blogController.js
 --------------- blogService.js
 --------------- blogView.html
------ app.module.js
------ app.routes.js
+----- app.js
 assets/
 ----- img/      // Images and icons for your app
 ----- css/      // All styles and style related files (SCSS or LESS files)
