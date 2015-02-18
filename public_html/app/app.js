@@ -7,7 +7,8 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- This file handles all the routes and route configuration.
+ This file handles all the routes and route configuration for the links
+ in the main navigation bar.
  ========================================================================== 
  */
 
@@ -15,7 +16,7 @@
 (function () { // this is to protect global namespace
     "use-strict"; // for strict syntax checking
 
-    var fxClient = angular.module('fxClient', ['ui.bootstrap','ui.router']);
+    var fxClient = angular.module('fxClient', ['ui.bootstrap', 'ui.router']);
     //Angular routing config
     fxClient.config(["$stateProvider",
         "$urlRouterProvider",
@@ -68,24 +69,27 @@
                 });
         }]);
 
-    fxClient.controller('LoginModalController',['$scope','$modal', function ($scope, $modal) {
+    /**
+     * the HTML5 autofocus property can be finicky when it comes to dynamically loaded
+     * templates and such with AngularJS. Use this simple directive to
+     * tame this beast once and for all.
+     * From: https://gist.github.com/mlynch/dd407b93ed288d499778
+     *
+     * Usage:
+     * <input type="text" autofocus>
+     */
+    angular.module('utils.autofocus', [])
 
-        $scope.items = ['item1', 'item2', 'item3'];
-        $scope.selected = {};
-        $scope.open = function () {
-            var modalInstance = $modal.open({
-                templateUrl: 'app/components/modals/login/loginModalTemplate.html',
-                scope: $scope
-            });
-            console.log('modal opened');
-            modalInstance.result.then(function () {
-                console.log($scope.selected);
-            }, function () {
-                console.log('Modal dismissed at: ' + new Date());
-            });
-        };
-    }]);
-
+        .directive('autofocus', ['$timeout', function ($timeout) {
+            return {
+                restrict: 'A',
+                link: function ($scope, $element) {
+                    $timeout(function () {
+                        $element[0].focus();
+                    });
+                }
+            }
+        }]);
 })();
 
 

@@ -1,15 +1,32 @@
+<!--
+	==========================================================================
+    FundsXpert
+
+	 Graphical User Interface Programming II
+	 Professor Jessie Heines
+	 Michael Meding & Jose Flores
+	 2015-02-12
+
+     This file is the dynamically loaded login modal. It collects just basic
+     username and password before submitting to the server via $http
+	==========================================================================
+-->
 <div class="modal-header">
-    <h3 class="modal-title">I'm a modal!</h3>
+    <h3 class="modal-title">Sign in</h3>
 </div>
 <div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+   <form ng-submit="ok()">
+       <div class="form-group">
+           <label for="loginModalUsername">Username</label>
+           <input id="loginModalUsername" ng-model="userData.username" type="text" class="form-control" placeholder="Enter username" autofocus>
+       </div>
+       <div class="form-group">
+           <label for="loginModalPassword">Password</label>
+           <input id="loginModalPassword" ng-model="userData.password" type="password" class="form-control" placeholder="Enter password">
+       </div>
+   </form>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="ok()">OK</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
 </div>
