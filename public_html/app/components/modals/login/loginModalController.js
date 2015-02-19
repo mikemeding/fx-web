@@ -18,6 +18,8 @@
 
         // JSON object for holding username and password
         $scope.userData = {};
+        $scope.alert = false;
+
 
         /**
          * Opens the main page login modal
@@ -34,6 +36,9 @@
                 resolve: { // this resolves the local vars of Instance Ctrl
                     userData: function () {
                         return $scope.userData;
+                    },
+                    alert: function () {
+                        return $scope.alert;
                     }
                 }
             });
@@ -52,21 +57,51 @@
     /**
      * The per instance modal controller. This handles the actual submission of the data
      */
-    app.controller("loginModalInstanceCtrl", function ($scope, $modalInstance, userData) {
+    app.controller("loginModalInstanceCtrl", ['$scope', '$modalInstance', 'userData', 'alert', '$http', '$state', function ($scope, $modalInstance, userData, alert, $http, $state) {
         $scope.userData = userData;
+        $scope.alert = alert;
 
         $scope.ok = function () {
             console.log($scope.userData);
+            var request = {
+                method: 'POST',
+                //url: 'http://localhost:8080/fx-rest-1.0/fx/login', // for my local test machine
+                url: 'http://www.mikemeding.com/fx/login', // for deployed code
+                data: userData
+            };
+            $http(request)
+                .success(function (data, status, headers, config, response) {
+                    console.log("Login Sucessful");
+                    console.log('status: ' + status);
+                    $scope.alert = false;
+                    $modalInstance.close();
+                    $state.go("find-clients");
+                })
+                .error(function (data, status, headers, config, response) {
+                    console.log("Login Failed");
+                    console.log('status: ' + status);
+                    $scope.alert = true;
+                });
 
-            // fire off http login request here
+            //THIS WORKS FOR TESTING!
+            //$http({
+            //    method: 'GET',
+            //    url: 'http://localhost:8080/fx-rest-1.0/fx/ping'
+            //})
+            //    .success(function (response) {
+            //        console.log("SUCCESS" + response);
+            //    })
+            //    .error(function (response) {
+            //        console.log("FAIL" + response);
+            //    });
 
-            $modalInstance.close();
+
         };
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-    });
+    }]);
 
 
 }());
