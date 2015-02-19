@@ -19,6 +19,7 @@
 
     function ClientsController() {
         var vm = this;
+
         vm.title = 'Clients Page';
 
         // create a message to display in our view
