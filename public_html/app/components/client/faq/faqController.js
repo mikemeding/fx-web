@@ -20,7 +20,13 @@
     function FaqController() {
         var vm = this;
 
+        //TODO: this needs to come from http request
+        vm.questions = [
+            {text:'Try eating a sandwich.', title:'Can\'t login?'},
+            {text:'Too flipping bad. Money isn\'t free.', title:'No Refund?'}];
+
         // create a message to display in our view
-        vm.message = 'May I ass you a question?';
+        vm.title = "Frequently Asked Questions"
+
     }
 }());

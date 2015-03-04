@@ -10,9 +10,19 @@
 	==========================================================================
 -->
 <div class="jumbotron">
-    <h1>Frequently Assed Questions</h1>
 
-    <p>{{vm.message}}</p>
+    <h1>{{vm.title}}</h1>
 
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">no</a></p>
+    <div ng-repeat="question in vm.questions">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>{{question.title}}</h3>
+            </div>
+            <div class="panel-body">
+                <h3 class="col-lg-offset-1">{{question.text}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <p><a class="btn btn-primary btn-lg" ui-sref="contact" role="button">Still confused? Contact us!</a></p>
 </div>

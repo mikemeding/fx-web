@@ -12,10 +12,17 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>{{ vm.title }}</h1>
+        <div class="row">
+            <h1>{{ vm.title }}</h1>
+        </div>
 
-        <p>{{ vm.message }}</p>
+        <div class="row">
+            <p>{{ vm.message }}</p>
+        </div>
 
-        <p><a class="btn btn-primary btn-lg" href="#" role="button" ng-click='vm.gotoRefund()'>Get your refund &raquo;</a></p>
+        <div class="row">
+                <p><a class="btn btn-primary btn-lg" href="#" role="button" ng-click='vm.gotoRefund()'>Get your
+                    refund &raquo;</a></p>
+        </div>
     </div>
 </div>
