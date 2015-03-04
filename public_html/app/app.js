@@ -52,63 +52,29 @@
                 })
 
                 // Admin Routing
-                //.state("admin", {
-                //    url: "/admin",
-                //    templateUrl: "app/components/admin/adminIndex.html"
-                //})
-                //.state("clients", {
-                //    url: "/admin/clients",
-                //    templateUrl: "app/components/admin/components/clients/clientsView.html",
-                //    controller: "ClientsController as vm"
-                //})
-                //.state("edit-config", {
-                //    url: "/admin/edit-config",
-                //    templateUrl: "app/components/admin/components/edit-config/editConfigView.html",
-                //    controller: "EditConfigController as vm"
-                //})
-                //.state("find-clients", {
-                //    url: "/admin/find-clients",
-                //    templateUrl: "app/components/admin/components/find-clients/findClientsView.html",
-                //    controller: "FindClientsController as vm"
-                //})
                 .state('admin', {
                     abstract: true,
                     url: '/admin',
                     templateUrl: "app/components/admin/adminIndex.html",
-                    //controller: function ($scope) {
-                    //    $scope.contacts = [{id: 0, name: "Alice"}, {id: 1, name: "Bob"}];
-                    //},
-                    onEnter: function () {
-                        console.log("enter contacts");
-                    }
 
                 })
                 .state('admin.clients', {
                     url: '/clients',
                     // loaded into ui-view of parent's template
                     templateUrl: "app/components/admin/components/clients/clientsView.html",
-                    controller: "ClientsController as vm",
-                    onEnter: function () {
-                        console.log("enter admin.clients");
-                    }
+                    controller: "ClientsController as vm"
                 })
                 .state('admin.edit-config', {
                     url: '/edit-config',
                     // loaded into ui-view of parent's template
                     templateUrl: "app/components/admin/components/edit-config/editConfigView.html",
-                    controller: "EditConfigController as vm",
-                    onEnter: function () {
-                        console.log("enter admin.edit-config");
-                    }
+                    controller: "EditConfigController as vm"
                 })
                 .state('admin.find-clients', {
                     url: '/find-clients',
                     // loaded into ui-view of parent's template
                     templateUrl: "app/components/admin/components/find-clients/findClientsView.html",
-                    controller: "FindClientsController as vm",
-                    onEnter: function () {
-                        console.log("enter admin.find-clients");
-                    }
+                    controller: "FindClientsController as vm"
                 })
             ;
         }]);

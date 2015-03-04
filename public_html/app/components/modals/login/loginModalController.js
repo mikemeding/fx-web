@@ -65,8 +65,8 @@
             console.log($scope.userData);
             var request = {
                 method: 'POST',
-                //url: 'http://localhost:8080/fx-rest-1.0/fx/login', // for my local test machine
-                url: 'http://www.mikemeding.com/fx/login', // for deployed code
+                url: 'http://localhost:8080/fx-rest-1.0/fx/login', // for my local test machine
+                //url: 'http://www.mikemeding.com/fx/login', // for deployed code
                 data: userData
             };
             $http(request)

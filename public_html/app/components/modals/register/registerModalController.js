@@ -60,43 +60,37 @@
     app.controller("RegisterModalInstanceCtrl", ['$scope', '$modalInstance', 'userData', 'alert', '$http', '$state', function ($scope, $modalInstance, userData, alert, $http, $state) {
         $scope.userData = userData;
         $scope.alert = alert;
+        $scope.alertMessage = "Invalid information given.";
 
         $scope.ok = function () {
-            console.log($scope.userData);
-            var request = {
-                method: 'POST',
-                url: 'http://localhost:8080/fx-rest-1.0/fx/addFxUser', // for my local test machine
-                //url: 'http://www.mikemeding.com/fx/addFxUser', // for deployed code
-                data: userData
-            };
-            $http(request)
-                .success(function (data, status, headers, config, response) {
-                    console.log("Registration Sucessful");
-                    console.log('status: ' + status);
-                    $scope.alert = false;
-                    $modalInstance.close();
-                    console.log("user created");
+            //console.log($scope.userData);
+            if ($scope.userData.password != $scope.userData.passwordConfirm) {
+                console.log("password mismatch")
+                $scope.alertMessage = "Password mismatch.";
+                $scope.alert = true;
+            } else {
+                var request = {
+                    method: 'POST',
+                    url: 'http://localhost:8080/fx-rest-1.0/fx/addFxUser', // for my local test machine
+                    //url: 'http://www.mikemeding.com/fx/addFxUser', // for deployed code
+                    data: userData
+                };
+                $http(request)
+                    .success(function (data, status, headers, config, response) {
+                        console.log("Registration Sucessful");
+                        console.log('status: ' + status);
+                        $scope.alert = false;
+                        $modalInstance.close();
+                        console.log("user created");
 
-                })
-                .error(function (data, status, headers, config, response) {
-                    console.log("Registration Failed");
-                    console.log('status: ' + status);
-                    $scope.alert = true;
-                });
+                    })
+                    .error(function (data, status, headers, config, response) {
+                        console.log("Registration Failed");
+                        console.log('status: ' + status);
+                        $scope.alert = true;
+                    });
 
-            //THIS WORKS FOR TESTING!
-            //$http({
-            //    method: 'GET',
-            //    url: 'http://localhost:8080/fx-rest-1.0/fx/ping'
-            //})
-            //    .success(function (response) {
-            //        console.log("SUCCESS" + response);
-            //    })
-            //    .error(function (response) {
-            //        console.log("FAIL" + response);
-            //    });
-
-
+            }
         };
 
         $scope.cancel = function () {
@@ -105,6 +99,4 @@
     }]);
 
 
-}());/**
- * Created by mike on 3/3/15.
- */
+}());
