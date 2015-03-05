@@ -1,21 +1,69 @@
 <!--
-	==========================================================================
+    ==========================================================================
     FundsXpert
 
-	 Graphical User Interface Programming II
-	 Professor Jessie Heines
-	 Michael Meding & Jose Flores
-	 2015-02-12
+     Graphical User Interface Programming II
+     Professor Jessie Heines
+     Michael Meding & Jose Flores
+     2015-02-12
 
-	==========================================================================
+    ==========================================================================
 -->
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
+
     <div class="container">
+
         <h1>{{ vm.title }}</h1>
 
         <p>{{ vm.message }}</p>
 
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <div class = "col-md-5
+                      col-xs-12">
+
+            <div class="input-line
+                        col-md-12
+                        col-xs-12">
+
+                <label  class=" col-md-12
+                                col-xm-12"> Your Name or Address</label>
+
+                <input  class="form-control ng-pristine ng-valid ng-touched"
+                        name="contact-name"
+                        id="contact-name"
+                        type="text">
+            </div>
+
+        </div>
+
+        <div class = "col-md-2
+                      col-xs-12"> OR </div>
+
+        <div class = "col-md-5
+                      col-xs-12">
+
+            <img style = "display: block;
+                          margin-left: auto;
+                          margin-right: auto;"
+                   src = "assets/img/google-map.png"
+                   class = "col-md-9
+                            col-xs-12"/>
+        </div>
+
+        <div class="input-line
+                    col-md-12
+                    col-xs-12">
+
+            <a  class= "col-md-12
+                        col-xs-12
+                        btn
+                        btn-primary
+                        btn-lg"
+                href="#"
+                role="button"> See if you qualify </a>
+
+        </div>
+
     </div>
+
 </div>

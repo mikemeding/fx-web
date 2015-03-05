@@ -1,18 +1,18 @@
 /* ==========================================================================
     FundsXpert
 
-	 Graphical User Interface Programming II
-	 Professor Jessie Heines
-	 Michael Meding & Jose Flores
-	 2015-02-12
+     Graphical User Interface Programming II
+     Professor Jessie Heines
+     Michael Meding & Jose Flores
+     2015-02-12
 
     Custom Global Styles
    ========================================================================== */
 
 /*main page padding*/
 body {
-	padding-top: 5px;
-	padding-bottom: 20px;
+    padding-top: 5px;
+    padding-bottom: 20px;
 }
 
 /*small adjustment to the navbar brand*/
@@ -23,6 +23,20 @@ h3.h3-brand {
 
 /*ui bootstrap cursor hotfix*/
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+
+.input-line {
+                    margin: 5px 0;
+                }
+                .input-line label {
+
+                }
+                .input-line input {
+                    height: 30px;
+                }
+                .input-line textarea {
+                    min-height: 250px;
+                }
 
 
 

@@ -1,13 +1,13 @@
 <!--
-	==========================================================================
+    ==========================================================================
     FundsXpert
 
-	 Graphical User Interface Programming II
-	 Professor Jessie Heines
-	 Michael Meding & Jose Flores
-	 2015-02-12
+     Graphical User Interface Programming II
+     Professor Jessie Heines
+     Michael Meding & Jose Flores
+     2015-02-12
 
-	==========================================================================
+    ==========================================================================
 -->
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
@@ -16,6 +16,19 @@
 
         <p>{{ vm.message }}</p>
 
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <div class="col-md-8
+                    col-xs-12
+                    blog-handler">
+            <div ng-bind-html="vm.blog"></div>
+        </div>
+
+        <div class="col-md-4
+                    col-xs-12
+                    feed-handler">
+            <div ng-bind-html="vm.twitter"></div>
+            <div ng-bind-html="vm.rss"></div>
+        </div>
+
+
     </div>
 </div>

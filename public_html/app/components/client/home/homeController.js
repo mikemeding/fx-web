@@ -1,4 +1,4 @@
-/* 
+/*
  ==========================================================================
  FundsXpert
 
@@ -7,7 +7,7 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- ========================================================================== 
+ ==========================================================================
  */
 // create the controller and inject Angular's $scope
 (function () {
@@ -20,9 +20,13 @@
     function HomeController($state) {
         var vm = this;
         vm.title = 'Our Services';
+        vm.image = 'assets/img/google-map.png' ;
 
         // create a message to display in our view
-        vm.message = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse orci enim, elementum vitae iaculis id, laoreet vel erat. Nam tempus justo a mattis auctor. Ut efficitur aliquam diam ac sodales. Pellentesque pretium finibus sapien, quis dignissim massa convallis quis. Morbi justo tortor, porttitor ac ipsum tincidunt, tempor dictum dui. Mauris pharetra aliquet cursus. Donec ut ligula lectus. Maecenas ligula est, faucibus a mauris quis, imperdiet placerat justo. Duis nec ipsum feugiat, venenatis metus id, facilisis justo. Vivamus faucibus pellentesque convallis.';
+        vm.message = 'Our firm deals with property tax returns. Specifically when an individual overpays their property taxes due to a change in rates or zoning and the slow communication of these changes from their municipality. Through our specialized software system we can find how much you have paid and how much you should have paid according to revenue service data. When an individual overpays we can then be contracted to retrieve your return (minus a processing fee) to make sure Uncle Sam does not keep your hard earned money.' ;
+
+
+
 
         vm.gotoRefund = function () {
             $state.go('refund');

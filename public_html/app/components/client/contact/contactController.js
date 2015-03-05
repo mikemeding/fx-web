@@ -1,4 +1,4 @@
-/* 
+/*
  ==========================================================================
  FundsXpert
 
@@ -7,7 +7,7 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- ========================================================================== 
+ ==========================================================================
  */
 // create the controller and inject Angular's $scope
 (function () {
@@ -15,13 +15,14 @@
     angular
         .module("fxClient")
         .controller("ContactController",
-        [ContactController]);
+        ['$scope', '$sce' ,ContactController]);
 
-    function ContactController() {
+    function ContactController( $scope, $sce ) {
         var vm = this;
         vm.title = 'Contact Us';
+        vm.webmasterEmail = "jose.flores.152@gmail.com" ;
 
         // create a message to display in our view
-        vm.message = 'Some crappy phone numbers and email addresses';
+        vm.message = $sce.trustAsHtml( 'This form can be used to contact us for any questions on our services, or to see if you qualify for a refund. If there are any problems with the application please contact our webmaster at <a href="mailto:' + vm.webmasterEmail + '" target="_blank">' + vm.webmasterEmail + '</a>.' ) ;
     }
 }());
