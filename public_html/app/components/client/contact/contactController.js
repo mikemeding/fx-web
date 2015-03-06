@@ -24,5 +24,11 @@
 
         // create a message to display in our view
         vm.message = $sce.trustAsHtml( 'This form can be used to contact us for any questions on our services, or to see if you qualify for a refund. If there are any problems with the application please contact our webmaster at <a href="mailto:' + vm.webmasterEmail + '" target="_blank">' + vm.webmasterEmail + '</a>.' ) ;
+
+
+
+        vm.submit = function(){
+
+        };
     }
 }());

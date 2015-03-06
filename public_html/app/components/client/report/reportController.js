@@ -14,18 +14,14 @@
     "use strict";
     angular
         .module("fxClient")
-        .controller("RefundController",
-        ['$state' , RefundController]);
+        .controller("ReportController",
+        [ReportController]);
 
-    function RefundController( $state ) {
+    function ReportController() {
         var vm = this;
-        vm.title = 'Apply For Refund';
+        vm.title = 'Refund report';
 
         // create a message to display in our view
-        vm.message = 'Someone wants their money back';
-
-        vm.gotoReport = function () {
-            $state.go('report' );
-        }
+        vm.message = 'Someone got their money back';
     }
 }());

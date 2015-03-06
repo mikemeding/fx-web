@@ -25,19 +25,39 @@ h3.h3-brand {
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 
-.input-line {
-                    margin: 5px 0;
-                }
-                .input-line label {
 
-                }
-                .input-line input {
-                    height: 30px;
-                }
-                .input-line textarea {
-                    min-height: 250px;
-                }
 
+/*POSTS*/
+div.post {
+    background:#fff;
+}
+
+div.twitter, div.rss {
+      margin: 20px 0;
+
+}
+
+h3.twitter, h3.rss {
+    font-size:20px;
+    margin:0px;
+}
+
+h4.twitter-date,
+h4.rss-date {
+    font-size:12px;
+    margin:0px;
+
+}
+
+p.twitter,
+p.rss {
+    font-size:20px;
+    margin:0 0 10px 0;
+}
+
+textarea {
+    resize:none ;
+}
 
 
 git

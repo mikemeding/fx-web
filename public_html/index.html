@@ -49,6 +49,7 @@
     <script src="app/components/client/news/newsController.js"></script>
     <script src="app/components/client/contact/contactController.js"></script>
     <script src="app/components/client/refund/refundController.js"></script>
+    <script src="app/components/client/report/reportController.js"></script>
 
     <!-- Admin Controllers -->
     <script src="app/components/admin/components/clients/clientsController.js"></script>
@@ -62,7 +63,6 @@
     <!--Modal Templates-->
     <script type="text/ng-template" src="app/components/modals/login/loginModalTemplate.html"></script>
     <script type="text/ng-template" src="app/components/modals/register/registerModalTemplate.html"></script>
-
 
 
 </head>
@@ -103,14 +103,14 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li style="margin-right: 10px;">
+                    <li>
                         <div ng-controller="LoginModalController">
-                            <button type="button" class="btn btn-default navbar-btn" ng-click="open()">Login</button>
+                            <button type="button" class="col-xs-12 btn btn-default navbar-btn" ng-click="open()">Login</button>
                         </div>
                     </li>
                     <li>
                         <div ng-controller="RegisterModalController">
-                            <button type="button" class="btn btn-warning navbar-btn" ng-click="open()">Register</button>
+                            <button type="button" class="col-xs-12 btn btn-warning navbar-btn" ng-click="open()">Register</button>
                         </div>
                     </li>
                 </ul>

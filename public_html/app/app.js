@@ -1,4 +1,4 @@
-/* 
+/*
  ==========================================================================
  FundsXpert
 
@@ -9,7 +9,7 @@
 
  This file handles all the routes and route configuration for the links
  in the main navigation bar.
- ========================================================================== 
+ ==========================================================================
  */
 
 
@@ -49,6 +49,11 @@
                     url: "/refund",
                     templateUrl: "app/components/client/refund/refundView.html",
                     controller: "RefundController as vm"
+                })
+                .state("report", {
+                    url: "/refund-report",
+                    templateUrl: "app/components/client/report/reportView.html",
+                    controller: "ReportController as vm"
                 })
 
                 // Admin Routing

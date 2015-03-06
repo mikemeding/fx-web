@@ -9,6 +9,7 @@
 
     ==========================================================================
 -->
+
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 
@@ -18,62 +19,66 @@
 
         <p ng-bind-html="vm.message"></p>
 
-        <div class="form-group">
 
-            <div class="input-line
-                        col-md-12
-                        col-xs-12">
+        <form name="form"
+              novalidate>
+
+            <div class="form-group">
 
                 <label  class=" col-md-2
                                 col-xs-12"> Your Email</label>
 
-                <input  class="form-control ng-pristine ng-valid ng-touched"
-                        name="contact-email"
+                <input  class= "form-control
+                                ng-pristine
+                                ng-touched
+                                ng-valid"
                         id="contact-email"
-                        type="text"/>
-            </div>
-
-            <div class="input-line
-                        col-md-12
-                        col-xs-12">
+                        name="contact-email"
+                        ng-model="vm.user.email"
+                        placeholder="Enter your email address"
+                        required
+                        type="email"/>
 
                 <label  class=" col-md-2
                                 col-xm-12">Your Name</label>
 
-                <input  class="form-control ng-pristine ng-valid ng-touched"
-                        name="contact-name"
+                <input  class ="form-control
+                                ng-pristine
+                                ng-touched
+                                ng-valid"
                         id="contact-name"
+                        name="contact-name"
+                        ng-model="vm.user.name"
+                        placeholder="Enter your name"
+                        required
                         type="text">
-            </div>
 
-            <div class="input-line
-                        col-md-12
-                        col-xs-12">
 
                 <label  class=" col-md-2
                                 col-xs-12">Your Message</label>
 
-                <textarea   class="form-control ng-pristine ng-valid ng-touched"
-                            name="contact-message"
+                <textarea   class= "form-control
+                                    ng-pristine
+                                    ng-touched
+                                    ng-valid"
                             id="contact-message"
-                            style="resize:none"></textarea>
+                            name="contact-message"
+                            ng-model="vm.user.message"
+                            placeholder="Enter your message"
+                            required></textarea>
+
+
             </div>
-
-        </div>
-
-        <div class="input-line
-                    col-md-12
-                    col-xs-12">
 
             <a  class= "col-md-12
                         col-xs-12
                         btn
-                        btn-primary
-                        btn-lg"
-                href="#"
-                role="button"> Submit </a>
+                        btn-lg
+                        btn-primary"
+                ng-click="vm.submit()"
+                role="submit"> Submit </a>
 
-        </div>
+        </form>
 
     </div>
 
