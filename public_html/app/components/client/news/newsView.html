@@ -16,10 +16,14 @@
 
         <p>{{ vm.message }}</p>
 
-        <div class="col-md-8
-                    col-xs-12
-                    blog-handler">
-            <div ng-bind-html="vm.blog"></div>
+        <div class="col-md-8 col-xs-12">
+            <div ng-show="vm.alert" class="alert alert-danger" role="alert">Could not get news from database</div>
+            <div ng-repeat="item in vm.newsArticles | orderBy:sortOrder">
+                <h2 class='blog'>{{item.title}}</h2>
+                <h4>by, {{item.user}}</h4>
+
+                <p style="font-size: 16px;">{{item.text}}</p>
+            </div>
         </div>
 
         <div class="col-md-4

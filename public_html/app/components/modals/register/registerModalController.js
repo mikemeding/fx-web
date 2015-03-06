@@ -71,8 +71,7 @@
             } else {
                 var request = {
                     method: 'POST',
-                    url: 'http://localhost:8080/fx-rest-1.0/fx/addFxUser', // for my local test machine
-                    //url: 'http://www.mikemeding.com/fx/addFxUser', // for deployed code
+                    url: 'http://www.mikemeding.com/fx/user/addUser', // for deployed code
                     data: userData
                 };
                 $http(request)
