@@ -14,8 +14,20 @@
     <div class="container">
         <h1>{{ vm.title }}</h1>
 
-        <p>{{ vm.message }}</p>
-
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+        <div ng-show="vm.alert" class="alert alert-danger" role="alert">Could not get contacts from database</div>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Refund Amount</th>
+            </tr>
+            <tr ng-repeat="client in vm.userData | orderBy:vm.sortOrder">
+                <td>{{client.name}}</td>
+                <td>{{client.email}}</td>
+                <td>{{client.message}}</td>
+                <td>{{client.refundAmount}}</td>
+            </tr>
+        </table>
     </div>
 </div>

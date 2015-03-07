@@ -17,66 +17,71 @@
 
         <h1>{{ vm.title }}</h1>
 
-        <p ng-bind-html="vm.message"></p>
+        <p>{{vm.message}}</p>
 
+        <div class="alert alert-success" role="alert" ng-show="vm.successAlert">Submitted successfully.</div>
+        <div class="alert alert-danger" role="alert" ng-show="vm.failureAlert">Failure submitting to database.</div>
 
         <form name="form"
+              ng-submit="vm.submit()"
               novalidate>
 
             <div class="form-group">
-
-                <label  class=" col-md-2
-                                col-xs-12"> Your Email</label>
-
-                <input  class= "form-control
-                                ng-pristine
-                                ng-touched
-                                ng-valid"
-                        id="contact-email"
-                        name="contact-email"
-                        ng-model="vm.user.email"
-                        placeholder="Enter your email address"
-                        required
-                        type="email"/>
-
-                <label  class=" col-md-2
+                <label class=" col-md-2
                                 col-xm-12">Your Name</label>
 
-                <input  class ="form-control
+                <input class="form-control
                                 ng-pristine
                                 ng-touched
                                 ng-valid"
-                        id="contact-name"
-                        name="contact-name"
-                        ng-model="vm.user.name"
-                        placeholder="Enter your name"
-                        required
-                        type="text">
+                       id="contact-name"
+                       name="contact-name"
+                       ng-model="vm.contact.name"
+                       placeholder="Enter your name"
+                       required
+                       type="text">
+            </div>
 
+            <div class="form-group">
+                <label class=" col-md-2
+                                col-xs-12"> Your Email</label>
+                <input class="form-control
+                                ng-pristine
+                                ng-touched
+                                ng-valid"
+                       id="contact-email"
+                       name="contact-email"
+                       ng-model="vm.contact.email"
+                       placeholder="Enter your email address"
+                       required
+                       type="email"/>
 
-                <label  class=" col-md-2
+            </div>
+
+            <div class="form-group">
+
+                <label class=" col-md-2
                                 col-xs-12">Your Message</label>
-
-                <textarea   class= "form-control
+                <textarea class="form-control
                                     ng-pristine
                                     ng-touched
                                     ng-valid"
-                            id="contact-message"
-                            name="contact-message"
-                            ng-model="vm.user.message"
-                            placeholder="Enter your message"
-                            required></textarea>
+                          id="contact-message"
+                          name="contact-message"
+                          ng-model="vm.contact.message"
+                          placeholder="Enter your message"
+                          required></textarea>
 
 
             </div>
 
-            <a  class= "col-md-12
-                        col-xs-12
+            <a class="col-md-6
+                        col-xs-6
                         btn
                         btn-lg
                         btn-primary"
-                ng-click="vm.submit()"
-                role="submit"> Submit </a>
+               ng-click="vm.submit()"
+               role="submit"> Submit </a>
 
         </form>
 

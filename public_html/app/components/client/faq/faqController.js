@@ -15,18 +15,23 @@
     angular
         .module("fxClient")
         .controller("FaqController",
-        [FaqController]);
+        ['$http','$scope',FaqController]);
 
-    function FaqController() {
-        var vm = this;
+    function FaqController($http,$scope) {
+        var $scope = this;
 
         //TODO: this needs to come from http request
-        vm.questions = [
-            {text:'Try eating a sandwich.', title:'Can\'t login?'},
-            {text:'Too flipping bad. Money isn\'t free.', title:'No Refund?'}];
+        $scope.questions = [];
 
         // create a message to display in our view
-        vm.title = "Frequently Asked Questions"
+        $scope.title = "Frequently Asked Questions"
+
+        $http({
+            method: "GET",
+            url: 'assets/json/faq.json'
+        }).success(function (data, status, headers, config, response) {
+            $scope.questions = data;
+        });
 
     }
 }());
