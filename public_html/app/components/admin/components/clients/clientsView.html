@@ -1,33 +1,89 @@
 <!--
-	==========================================================================
+    ==========================================================================
     FundsXpert
 
-	 Graphical User Interface Programming II
-	 Professor Jessie Heines
-	 Michael Meding & Jose Flores
-	 2015-02-12
+     Graphical User Interface Programming II
+     Professor Jessie Heines
+     Michael Meding & Jose Flores
+     2015-02-12
 
-	==========================================================================
+    ==========================================================================
 -->
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
+
     <div class="container">
+
         <h1>{{ vm.title }}</h1>
 
-        <div ng-show="vm.alert" class="alert alert-danger" role="alert">Could not get contacts from database</div>
+        <div class="panel
+                    panel-primary">
+
+            <div class="panel-heading">
+
+                <h2 style="color:#ffffff">Search Clients</h2>
+
+            </div>
+
+            <div class="panel-body">
+
+                <div class="form-group">
+
+                    <!-- string is used to limit results -->
+                    <input  class="form-control"
+                            data-ng-model="vm.query"
+                            id="clientSearch"
+                            placeholder="Enter search string"
+                            type="text"/>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div ng-show="vm.alert"
+             class="alert alert-danger"
+             role="alert">Could not get contacts from database</div>
+
         <table class="table table-striped">
+
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Message</th>
-                <th>Refund Amount</th>
+
+                <thead>
+
+                    <!-- table columns allow for sorting -->
+                    <th><a  href=""
+                            data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
+
+                    <th><a  href=""
+                            data-ng-click="vm.sortOrder='email'; reverse=!reverse">Email</a></th>
+
+                    <th><a  href=""
+                            data-ng-click="vm.sortOrder='message'; reverse=!reverse">Message</a></th>
+
+                    <th><a  href=""
+                            data-ng-click="vm.sortOrder='refundAmount'; reverse=!reverse">Refund Amount</a></th>
+
+                </thead>
+
             </tr>
-            <tr ng-repeat="client in vm.userData | orderBy:vm.sortOrder">
+
+            <!-- Added filter and sorting capabilities -->
+            <tr ng-repeat="client in vm.userData | filter:vm.searchFilter | orderBy:vm.sortOrder:reverse">
+
                 <td>{{client.name}}</td>
+
                 <td>{{client.email}}</td>
+
                 <td>{{client.message}}</td>
+
                 <td>{{client.refundAmount}}</td>
+
             </tr>
+
         </table>
+
     </div>
+
 </div>

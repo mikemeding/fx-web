@@ -1,4 +1,4 @@
-/* 
+/*
  ==========================================================================
  FundsXpert
 
@@ -7,26 +7,25 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- ========================================================================== 
+ ==========================================================================
  */
-// create the controller and inject Angular's $scope
+// create the controller and inject Angular's vm
 (function () {
     "use strict";
     angular
         .module("fxClient")
         .controller("ClientsController",
-        ["$http", "$scope", ClientsController]);
+        ["$http", "$scope" ,ClientsController]);
 
-    function ClientsController($http, $scope) {
-        var $scope = this;
+    function ClientsController($http, $scope  ) {
+        var vm = this;
 
-        $scope.title = 'Clients Page';
+        vm.title = 'Clients Page';
 
         // create a message to display in our view
-        $scope.message = 'A nice clients table goes here';
-        $scope.alert = false;
-        $scope.userData = {};
-        $scope.sortOrder ='-id';
+        vm.message = 'A nice clients table goes here';
+        vm.alert = false;
+        vm.userData = {};
 
         var request = {
             method: 'GET',
@@ -37,13 +36,37 @@
             .success(function (data, status, headers, config, response) { // If call successful
                 console.log("Get all contacts successful");
                 console.log('data:' + data);
-                $scope.alert = false;
-                $scope.userData = data;
+                vm.alert = false;
+                vm.userData = data;
             })
             .error(function (data, status, headers, config, response) { // If call fails
                 console.log("Get all contacts failed");
                 console.log('response: ' + response); // response will contain reason why
-                $scope.alert = true;
+                vm.alert = true;
             });
+
+
+        /**
+         *  @name   searchFilter
+         *
+         *  The filter used to display information in the client table
+         *
+         *  @param  obj     the row item being tested
+         */
+        vm.searchFilter = function( obj ) {
+            var re ;    //  Holds the regular expression to search with
+
+            //Initialization
+            re = new RegExp( vm.query , 'i' ) ; // a regular expression
+
+            //  Returning true only when found in the object columns
+            //  and there was something to search for
+            return  !vm.query ||
+                    re.test( obj.name ) ||
+                    re.test( obj.email ) ||
+                    re.test( obj.message ) ||
+                    re.test( obj.refundAmount ) ;
+        }
+
     }
 }());
