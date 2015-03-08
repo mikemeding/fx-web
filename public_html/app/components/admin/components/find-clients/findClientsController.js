@@ -15,20 +15,39 @@
     angular
         .module("fxClient")
         .controller("FindClientsController",
-        [FindClientsController]);
+        ["$scope", "$http", FindClientsController]);
 
-    function FindClientsController() {
-        var vm = this;
-        vm.byName = "";
-        vm.byAddress = "";
+    function FindClientsController($scope, $http) {
+        var $scope = this;
 
-        vm.title = 'Find Clients';
+        $scope.title = 'Find Clients';
 
-        // create a message to display in our view
-        vm.message = 'Find new clients';
 
-        vm.findClient = function () {
-            console.log('byName: ' + vm.byName + ' byAddress: ' + vm.byAddress)
+        //getAppraisalDataInAssessedRange/{taxYear}/{fromValue}/{toValue}
+        $scope.years = ["2013", "2014"]; // currently available tax years
+        $scope.data = {}
+
+        $scope.findClientsInRange = function () {
+            console.log($scope.data);
+
+            var request = {
+                method: 'GET',
+                url: 'http://www.mikemeding.com/fx/appraisal/getAppraisalDataInAssessedRange/'+$scope.data.year+'/'+$scope.data.fromValue+'/'+$scope.data.toValue
+            };
+
+            console.log(request);
+            $http(request)
+                .success(function (data, status, headers, config, response) { // If call successful
+                    console.log("Get data successful");
+                    console.log("data: " + data);
+                    // DO SUCCESS STUFF HERE
+                })
+                .error(function (data, status, headers, config, response) { // If call fails
+                    console.log("Failed to get data");
+                    console.log('response: ' + response); // response will contain reason why
+                    // DO FAIL STUFF HERE
+                });
         }
+
     }
 }());
