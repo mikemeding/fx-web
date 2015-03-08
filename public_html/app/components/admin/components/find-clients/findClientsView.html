@@ -14,19 +14,35 @@
     <div class="container">
         <h1>{{ vm.title }}</h1>
 
-        <form>
+        <form ng-submit="vm.findClientsInRange()">
+            <!--TODO: make a working dropdown-->
+            <!--<div class="dropdown">-->
+                <!--<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">-->
+                    <!--{{vm.data.year}}-->
+                    <!--<span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" role="menu" ng-repeat="year in vm.years">-->
+                    <!--<li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{year}}</a></li>-->
+                <!--</ul>-->
+            <!--</div>-->
+
             <div class="form-group">
-                <label for="byName">By Name</label>
-                <input id="byName" ng-model="vm.byName" type="text" class="form-control"
-                       placeholder="Name" autofocus>
+                <label for="year">Taxing Year</label>
+                <input id="year" ng-model="vm.data.year" type="text" class="form-control"
+                       placeholder="Taxing Year" autofocus>
             </div>
             <div class="form-group">
-                <label for="byAddress">By Address</label>
-                <input id="byAddress" ng-model="vm.byAddress" type="text" class="form-control"
-                       placeholder="Address">
+                <label for="year">From Value</label>
+                <input id="fromValue" ng-model="vm.data.fromValue" type="text" class="form-control"
+                       placeholder="From Value" autofocus>
+            </div>
+            <div class="form-group">
+                <label for="toValue">To Value</label>
+                <input id="toValue" ng-model="vm.data.toValue" type="text" class="form-control"
+                       placeholder="To Value">
             </div>
 
-            <button class="btn btn-primary" ng-click="vm.findClient()">Search</button>
+            <button class="btn btn-primary" type="submit">Search</button>
         </form>
     </div>
 </div>
