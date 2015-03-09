@@ -1,4 +1,4 @@
-/* 
+/*
  ==========================================================================
  FundsXpert
 
@@ -7,9 +7,9 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- ========================================================================== 
+ ==========================================================================
  */
-// create the controller and inject Angular's $scope
+// create the controller and inject Angular's vm
 (function () {
     "use strict";
     angular
@@ -18,34 +18,36 @@
         ["$scope","$http",EditConfigController]);
 
     function EditConfigController($scope,$http) {
-        var $scope = this;
-        $scope.title = 'Edit Site';
+        var vm = this;
+        vm.title = 'Edit Site';
 
-        $scope.successAlert = false;
-        $scope.failureAlert = false;
+        vm.successAlert = false;
+        vm.failureAlert = false;
 
-        $scope.userData = {} // arguments go here in JSON notation
+        vm.userData = {} // arguments go here in JSON notation
 
-        $scope.submitNews = function () {
+        vm.submitNews = function () {
             console.log("submit news");
-            $scope.userData.user = "mike"; // TODO: this needs to be fixed
+            vm.userData.user = "mike"; // TODO: this needs to be fixed
 
             var request = {
                 method: 'POST',
                 url: 'http://www.mikemeding.com/fx/news/addNews',
-                data: $scope.userData
+                data: vm.userData
             };
 
             $http(request)
                 .success(function (data, status, headers, config, response) { // If call successful
                     console.log("News Submission Sucessful");
-                    $scope.successAlert = true;
-                    $scope.failureAlert = false;
+                    vm.successAlert = true;
+                    vm.failureAlert = false;
+                    vm.userData.title = undefined ;
+                    vm.userData.text = undefined ;
                 })
                 .error(function (data, status, headers, config, response) { // If call fails
                     console.log("News Submission Failed");
-                    $scope.failureAlert = true;
-                    $scope.successAlert = false;
+                    vm.failureAlert = true;
+                    vm.successAlert = false;
                 });
 
         }
