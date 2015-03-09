@@ -1,28 +1,46 @@
 <!--
-	==========================================================================
+    ==========================================================================
     FundsXpert
 
-	 Graphical User Interface Programming II
-	 Professor Jessie Heines
-	 Michael Meding & Jose Flores
-	 2015-02-12
+     Graphical User Interface Programming II
+     Professor Jessie Heines
+     Michael Meding & Jose Flores
+     2015-02-12
 
-	==========================================================================
+    ==========================================================================
 -->
 <div class="jumbotron">
 
     <h1>{{vm.title}}</h1>
 
     <div ng-repeat="question in vm.questions">
+
         <div class="panel panel-default">
+
             <div class="panel-heading">
+
                 <h4>Q. {{question.question}}</h4>
+
             </div>
+
             <div class="panel-body">
+
                 <h5 class="col-lg-offset-1">A. {{question.answer}}</h5>
+
             </div>
+
         </div>
+
     </div>
 
-    <p><a class="btn btn-primary btn-lg" ui-sref="contact" role="button">Still confused? Contact us!</a></p>
+    <p>
+
+        <a  class= "btn
+                    btn-primary
+                    btn-lg"
+            ui-sref="contact"
+            role="button">Still confused? Contact us!</a>
+
+    </p>
+
 </div>

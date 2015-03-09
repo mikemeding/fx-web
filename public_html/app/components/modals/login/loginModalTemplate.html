@@ -51,6 +51,7 @@
 
             <input id="loginModalPassword"
                    ng-model="userData.password"
+                   ng-keyup="$event.keyCode == 13 && ok()"
                    type="password"
                    class="form-control"
                    placeholder="Enter password"

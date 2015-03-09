@@ -1,4 +1,4 @@
-/* 
+/*
  ==========================================================================
  FundsXpert
 
@@ -7,7 +7,7 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- ========================================================================== 
+ ==========================================================================
  */
 // create the controller and inject Angular's $scope
 (function () {
@@ -31,6 +31,7 @@
             url: 'assets/json/faq.json'
         }).success(function (data, status, headers, config, response) {
             $scope.questions = data;
+            console.log( data ) ;
         });
 
     }
