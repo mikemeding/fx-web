@@ -90,6 +90,22 @@
             return ret ;
         }
 
+        vm.processEnter = function(){
+            var shiftPressed = window.event.shiftKey ;
+            var keyPressed = window.event.keyCode;
+
+            console.log(shiftPressed);
+            console.log(keyPressed);
+            if (shiftPressed && keyPressed == 13) {
+
+                window.event.keyCode = 13;
+
+            } else if ( keyPressed == 13 ) {
+
+                vm.submit() ;
+
+            }
+        };
         vm.submit = function () {
 
 

@@ -98,6 +98,8 @@
                                       id="contact-message"
                                       name="contact-message"
                                       ng-model="vm.contactMessage"
+                                      ng-minlength="1"
+                                      ng-keydown="processEnter()"
                                       placeholder="Enter your message"></textarea>
 
                             <div class="alert

@@ -43,11 +43,18 @@
 
                         <label for="newsTitle">Article Title</label>
 
-                        <input  type="text"
+                        <input  autofocus
+                                type="text"
                                 class="form-control"
                                 id="newsTitle"
                                 placeholder="Enter title"
-                                ng-model="vm.userData.title">
+                                ng-model="vm.userData.title"
+                                 />
+
+                        <div class="alert
+                                    alert-danger"
+                             role="alert"
+                             ng-show="vm.userData.titleMissing">The title is required.</div>
 
                     </div>
 
@@ -60,9 +67,13 @@
                                     id="newsText"
                                     placeholder="Enter article body text"
                                     ng-model="vm.userData.text"
-                                    ng-keyup="$event.keyCode == 16 &&
-                                              $event.keyCode == 13 &&
-                                              vm.submitNews()"></textarea>
+                                    ng-keydown="vm.processEnter()"
+                                     ></textarea>
+
+                        <div class="alert
+                                    alert-danger"
+                             role="alert"
+                             ng-show="vm.userData.textMissing">The article is required.</div>
 
                     </div>
 
