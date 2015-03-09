@@ -62,7 +62,102 @@
         $scope.alert = alert;
         $scope.alertMessage = "Invalid information given.";
 
+        //  Error messages
+        $scope.userData.usernameMissing = false ;
+        $scope.userData.passwordMissing = false ;
+        $scope.userData.passwordConfirmMissing = false ;
+        $scope.userData.emailMissing = false ;
+        $scope.userData.nameMissing = false ;
+
+
+        $scope.validateForm = function(){
+
+            var re ;
+            var pattern ;
+            var test ;
+            var ret ;
+
+            ret = true ;
+
+            //  Missing value
+
+            $scope.userData.usernameMissing = false ;
+            $scope.userData.passwordMissing = false ;
+            $scope.userData.passwordConfirmMissing = false ;
+            $scope.userData.emailMissing = false ;
+            $scope.userData.nameMissing = false ;
+
+            if ( $scope.userData.username === undefined ){
+                console.log( "username missing");
+                $scope.userData.usernameMissing = true ;
+                ret = false ;
+            }
+            if ( $scope.userData.password === undefined ){
+                console.log( "password missing");
+                $scope.userData.passwordMissing = true ;
+                ret = false ;
+            }
+            if ( $scope.userData.passwordConfirm === undefined ){
+                console.log( "password confirm missing");
+                $scope.userData.passwordConfirmMissing = true ;
+                ret = false ;
+            }
+            if ( $scope.userData.email === undefined ){
+                console.log( "email missing");
+                $scope.userData.emailMissing = true ;
+                ret = false ;
+            }
+            if ( $scope.userData.name === undefined ){
+                console.log( "name missing");
+                $scope.userData.nameMissing = true ;
+                ret = false ;
+            }
+
+
+            //  Regex validate
+
+            $scope.userData.emailInvalid = false ;
+            $scope.userData.passwordInvalid = false ;
+
+            pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/ ;
+            re = new RegExp( pattern ) ; // a regular expression
+            test = re.test( $scope.userData.password ) ;
+            console.log( test ) ;
+            if ( !test ){
+                console.log( "password invalid" ) ;
+                $scope.userData.passwordInvalid = true ;
+                ret = false ;
+            }
+
+            pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
+            re = new RegExp( pattern ) ; // a regular expression
+            test = re.test( $scope.userData.email ) ;
+            console.log( test ) ;
+            if ( !test ){
+                console.log( "email invalid");
+                $scope.userData.emailInvalid = true ;
+                ret = false ;
+            }
+
+            //  Password matching
+
+            $scope.userData.passwordConfirmMismatch = false ;
+
+            if ( $scope.userData.passwordConfirm != $scope.userData.password  ){
+                console.log( "password confirm mismatch");
+                $scope.userData.passwordConfirmMismatch = true ;
+                ret = false ;
+            }
+
+            return ret ;
+
+        };
+
         $scope.ok = function () {
+
+            if ( !$scope.validateForm() )
+                return ;
+
             //console.log($scope.userData);
             if ($scope.userData.password != $scope.userData.passwordConfirm) {
                 console.log("password mismatch")
