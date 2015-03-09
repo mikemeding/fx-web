@@ -53,14 +53,16 @@
 
                     <div class="form-group">
 
-                        <label for="newsText">Text</label>
+                        <label for="newsText">Text (Shift + Enter for new lines)</label>
 
                         <textarea   type="text"
                                     class="form-control"
                                     id="newsText"
                                     placeholder="Enter article body text"
                                     ng-model="vm.userData.text"
-                                    ng-keyup="$event.keyCode == 13 && vm.submitNews()"></textarea>
+                                    ng-keyup="$event.keyCode == 16 &&
+                                              $event.keyCode == 13 &&
+                                              vm.submitNews()"></textarea>
 
                     </div>
 
