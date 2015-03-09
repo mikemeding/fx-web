@@ -178,8 +178,10 @@
                         console.log("Registration Sucessful");
                         console.log('status: ' + status);
                         $scope.alert = false;
+                        $state.go("admin.find-clients");
                         $modalInstance.close();
                         console.log("user created");
+
 
                     })
                     .error(function (data, status, headers, config, response) {
