@@ -92,11 +92,12 @@
 
             $scope.userData.passwordInvalid = false ;
 
-            pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/ ;
+            pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ ;
             re = new RegExp( pattern ) ; // a regular expression
             test = re.test( $scope.userData.password ) ;
             console.log( test ) ;
-            if ( !test ){
+            if ( $scope.userData.password !== undefined &&
+                 !test ){
                 console.log( "password invalid" ) ;
                 $scope.userData.passwordInvalid = true ;
                 ret = false ;

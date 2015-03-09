@@ -19,14 +19,6 @@
 
         <p>{{vm.message}}</p>
 
-        <div class="alert alert-success" role="alert" ng-show="vm.successAlert">Submitted successfully.</div>
-
-        <div class="alert alert-danger" role="alert" ng-show="vm.failureAlert">Failure submitting to database.</div>
-        <div class="alert alert-danger" role="alert" ng-show="vm.emailAlert">Invalid email address, or it is missing from form.</div>
-        <div class="alert alert-danger" role="alert" ng-show="vm.nameAlert">Name is missing from form.</div>
-        <div class="alert alert-danger" role="alert" ng-show="vm.messageAlert">Message is missing from form.</div>
-
-
         <div class="panel
                     panel-primary">
 
@@ -40,56 +32,78 @@
 
                 <div class="form-group">
 
-                    <form name="form"
+                    <form name="contact-form"
                           ng-submit="vm.submit()"
                           novalidate>
 
-                        <div class="form-group">
-                            <label class=" col-md-2
-                                            col-xm-12">Your Name</label>
+                        <div class="alert
+                                    alert-success"
+                             role="alert"
+                             ng-show="vm.successAlert">Submitted successfully.</div>
 
-                            <input class="form-control
-                                            ng-pristine
-                                            ng-touched
-                                            ng-valid"
+                        <div class="alert
+                                    alert-danger"
+                             role="alert"
+                             ng-show="vm.failureAlert">Failure submitting to database.</div>
+
+                        <div class="form-group">
+
+                            <label for="contact-name">Your Name</label>
+
+                            <input class="form-control"
                                    id="contact-name"
                                    name="contact-name"
-                                   ng-model="vm.contact.name"
+                                   ng-model="vm.contactName"
                                    placeholder="Enter your name"
-                                   required
-                                   type="text">
+                                   type="text" />
+
+                            <div class="alert
+                                        alert-danger"
+                                 role="alert"
+                                 ng-show="vm.nameMissing">Name is required.</div>
+
                         </div>
 
                         <div class="form-group">
-                            <label class=" col-md-2
-                                            col-xs-12"> Your Email</label>
-                            <input class="form-control
-                                            ng-pristine
-                                            ng-touched
-                                            ng-valid"
+
+                            <label for="contact-email">Your Email (username@domain.com)</label>
+
+                            <input class="form-control"
                                    id="contact-email"
                                    name="contact-email"
-                                   ng-model="vm.contact.email"
+                                   ng-model="vm.contactEmail"
                                    placeholder="Enter your email address"
-                                   required
-                                   type="email"/>
+                                   value="{{vm.contactEmailUnvalidated}}"
+                                   type="email"
+                                   required />
+
+                            <div class="alert
+                                        alert-danger"
+                                 role="alert"
+                                 ng-show="vm.emailMissing">Email address is required.</div>
+
+                            <div class="alert
+                                        alert-danger"
+                                 role="alert"
+                                 ng-show="vm.emailInvalid">Email address is invalid.</div>
 
                         </div>
 
+
                         <div class="form-group">
 
-                            <label class=" col-md-2
-                                            col-xs-12">Your Message</label>
-                            <textarea class="form-control
-                                                ng-pristine
-                                                ng-touched
-                                                ng-valid"
+                            <label for="contact-message">Your Message</label>
+
+                            <textarea class="form-control"
                                       id="contact-message"
                                       name="contact-message"
-                                      ng-model="vm.contact.message"
-                                      placeholder="Enter your message"
-                                      required></textarea>
+                                      ng-model="vm.contactMessage"
+                                      placeholder="Enter your message"></textarea>
 
+                            <div class="alert
+                                        alert-danger"
+                                 role="alert"
+                                 ng-show="vm.messageMissing">Message is required.</div>
 
                         </div>
 

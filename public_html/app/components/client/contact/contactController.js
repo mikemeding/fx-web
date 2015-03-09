@@ -24,92 +24,68 @@
         vm.title = 'Contact Us';
         vm.message = "This form can be used to contact us for any questions on our services, or to see if you qualify for a refund."
 
-        vm.contact = {};
+
         vm.successAlert = false;
         vm.failureAlert = false;
-        vm.emailAlert = false ;
-        vm.nameAlert = false ;
-        vm.messageAlert = false ;
+
 
         vm.reset = function () {
-            vm.contact = {};
+            vm.contactEmail = undefined ;
+            vm.contactMessage = undefined ;
+            vm.contactName = undefined ;
         }
 
-        vm.isValidEmail = function() {
-            var re ;    //  Holds the regular expression to search with
-            var pattern ;
-            var test ;
-            //Initialization
-            pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
-            re = new RegExp( pattern ) ; // a regular expression
-
-            test = re.test( vm.contact.email ) ;
-            console.log( 'Valid Email: ' + test ) ;
-
-            if ( vm.contact.email !== undefined &&
-                 test ) {
-
-                vm.contact.email = vm.contact.email.trim() ;
-                vm.emailAlert = false ;
-                return true ;
-            }
-
-            vm.emailAlert = true ;
-            return false ;
-
-        }
-
-        vm.isValidName = function() {
-            var re ;    //  Holds the regular expression to search with
-            var pattern ;
-            var test ;
-
-            pattern = /^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$/ ;
-            re = new RegExp( pattern ) ;
-            test = re.test( vm.contact.name ) ;
-
-            if ( vm.contact.name !== undefined &&
-                 test ) {
-
-                vm.contact.name = vm.contact.name.trim() ;
-                vm.nameAlert = false ;
-                return true ;
-            }
-
-            vm.nameAlert = true ;
-            return false ;
-
-        }
-
-        vm.isValidMessage = function() {
-            var re ;    //  Holds the regular expression to search with
-            var pattern ;
-            var test ;
-
-            pattern = /^[a-zA-Z0-9]*[a-zA-Z]+[a-zA-Z0-9]*$/ ;
-            re = new RegExp( pattern ) ;
-            test = re.test( vm.contact.name ) ;
-
-            if ( vm.contact.message !== undefined &&
-                 test ) {
-
-                vm.contact.message = vm.contact.message.trim() ;
-                vm.messageAlert = false ;
-                return true ;
-            }
-
-            vm.messageAlert = true ;
-            return false ;
-
-        }
 
         vm.validForm = function() {
+            var pattern ;
+            var re ;
+            var ret ;
+            var test ;
+            var email ;
 
-            var ret = true ;
+            ret = true ;
 
-            if ( !vm.isValidName() ) ret = false ;
-            if ( !vm.isValidEmail() ) ret = false ;
-            if ( !vm.isValidMessage() ) ret = false ;
+            //  due to invalid returned on email by angular
+            email = document.getElementById( "contact-email").value.trim() ;
+
+            //  Missing tests
+            vm.emailMissing = false ;
+            vm.nameMissing = false ;
+            vm.messageMissing = false ;
+
+            if ( vm.contactName === undefined ) {
+                console.log( "name missing");
+                vm.nameMissing = true ;
+                ret = false ;
+            }
+            if ( email == "" ){
+                console.log( "email missing");
+                vm.emailMissing = true ;
+                ret = false ;
+            }
+            if ( vm.contactMessage == undefined ){
+                console.log( "message missing");
+                vm.messageMissing = true ;
+                ret = false ;
+            }
+
+            //  Regex tests
+            vm.emailInvalid = false ;
+
+            if ( email != ""  ) {
+
+                pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
+                re = new RegExp( pattern ) ; // a regular expression
+                test = re.test( email  ) ;
+                console.log( test ) ;
+
+                if ( !test ){
+                    console.log( "email invalid");
+                    vm.emailInvalid = true ;
+                    ret = false ;
+                }
+
+            }
 
             return ret ;
         }
@@ -126,7 +102,11 @@
             var request = {
                 method: 'POST', // replace with method above
                 url: 'http://www.mikemeding.com/fx/contact/addContact', // for my deployed backend
-                data: vm.contact
+                data:{
+                    email: vm.contactEmail ,
+                    name: vm.contactName ,
+                    message: vm.contactMessage
+                }
             };
 
             $http(request)

@@ -76,8 +76,11 @@
             var pattern ;
             var test ;
             var ret ;
+            var email ;
 
             ret = true ;
+            //  due to invalid returned on email by angular
+            email = document.getElementById( "registerModalEmail").value.trim() ;
 
             //  Missing value
 
@@ -102,7 +105,7 @@
                 $scope.userData.passwordConfirmMissing = true ;
                 ret = false ;
             }
-            if ( $scope.userData.email === undefined ){
+            if ( email == "" ){
                 console.log( "email missing");
                 $scope.userData.emailMissing = true ;
                 ret = false ;
@@ -119,11 +122,11 @@
             $scope.userData.emailInvalid = false ;
             $scope.userData.passwordInvalid = false ;
 
-            pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/ ;
+            pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ ;
             re = new RegExp( pattern ) ; // a regular expression
             test = re.test( $scope.userData.password ) ;
             console.log( test ) ;
-            if ( !test ){
+            if ( $scope.userData.password !== undefined &&!test ){
                 console.log( "password invalid" ) ;
                 $scope.userData.passwordInvalid = true ;
                 ret = false ;
@@ -131,9 +134,9 @@
 
             pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
             re = new RegExp( pattern ) ; // a regular expression
-            test = re.test( $scope.userData.email ) ;
+            test = re.test( email ) ;
             console.log( test ) ;
-            if ( !test ){
+            if ( email != "" && !test ){
                 console.log( "email invalid");
                 $scope.userData.emailInvalid = true ;
                 ret = false ;
@@ -143,7 +146,8 @@
 
             $scope.userData.passwordConfirmMismatch = false ;
 
-            if ( $scope.userData.passwordConfirm != $scope.userData.password  ){
+            if ( $scope.userData.passwordConfirm !== undefined &&
+                 $scope.userData.passwordConfirm != $scope.userData.password  ){
                 console.log( "password confirm mismatch");
                 $scope.userData.passwordConfirmMismatch = true ;
                 ret = false ;
