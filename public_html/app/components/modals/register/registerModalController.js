@@ -70,7 +70,7 @@
         $scope.userData.nameMissing = false ;
 
 
-        $scope.validateForm = function(){
+        $scope.validateRegistrationForm = function(){
 
             var re ;
             var pattern ;
@@ -155,7 +155,7 @@
 
         $scope.ok = function () {
 
-            if ( !$scope.validateForm() )
+            if ( !$scope.validateRegistrationForm() )
                 return ;
 
             //console.log($scope.userData);

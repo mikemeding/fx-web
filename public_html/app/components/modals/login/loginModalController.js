@@ -61,8 +61,56 @@
         $scope.userData = userData;
         $scope.alert = alert;
 
+
+        $scope.userData.usernameMissing = false ;
+        $scope.userData.passwordMissing = false ;
+
+        $scope.validateLoginForm = function(){
+
+            var ret ;
+            var pattern ;
+            var re ;
+            var test ;
+
+            ret = true ;
+
+            $scope.userData.usernameMissing = false ;
+            $scope.userData.passwordMissing = false ;
+
+            if ( $scope.userData.username === undefined ){
+                console.log( "username missing");
+                $scope.userData.usernameMissing = true ;
+                ret = false ;
+            }
+
+            if ( $scope.userData.password === undefined ){
+                console.log( "password missing");
+                $scope.userData.passwordMissing = true ;
+                ret = false ;
+            }
+
+
+            $scope.userData.passwordInvalid = false ;
+
+            pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/ ;
+            re = new RegExp( pattern ) ; // a regular expression
+            test = re.test( $scope.userData.password ) ;
+            console.log( test ) ;
+            if ( !test ){
+                console.log( "password invalid" ) ;
+                $scope.userData.passwordInvalid = true ;
+                ret = false ;
+            }
+
+            return ret ;
+        };
+
         $scope.ok = function () {
+
             console.log($scope.userData);
+            if ( !$scope.validateLoginForm() )
+                return ;
+
             var request = {
                 method: 'POST',
                 //url: 'http://localhost:8080/fx-rest-1.0/fx/login', // for my local test machine
