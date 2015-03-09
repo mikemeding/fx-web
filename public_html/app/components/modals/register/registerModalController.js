@@ -90,17 +90,20 @@
             $scope.userData.emailMissing = false ;
             $scope.userData.nameMissing = false ;
 
-            if ( $scope.userData.username === undefined ){
+            if ( $scope.userData.username == undefined ||
+                $scope.userData.username.trim() == "" ){
                 console.log( "username missing");
                 $scope.userData.usernameMissing = true ;
                 ret = false ;
             }
-            if ( $scope.userData.password === undefined ){
+            if ( $scope.userData.password == undefined ||
+                $scope.userData.password .trim() == "" ){
                 console.log( "password missing");
                 $scope.userData.passwordMissing = true ;
                 ret = false ;
             }
-            if ( $scope.userData.passwordConfirm === undefined ){
+            if ( $scope.userData.passwordConfirm == undefined ||
+                $scope.userData.passwordConfirm.trim() == "" ){
                 console.log( "password confirm missing");
                 $scope.userData.passwordConfirmMissing = true ;
                 ret = false ;
@@ -110,7 +113,8 @@
                 $scope.userData.emailMissing = true ;
                 ret = false ;
             }
-            if ( $scope.userData.name === undefined ){
+            if ( $scope.userData.name == undefined ||
+                $scope.userData.name.trim() == "" ){
                 console.log( "name missing");
                 $scope.userData.nameMissing = true ;
                 ret = false ;

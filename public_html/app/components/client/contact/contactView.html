@@ -92,14 +92,13 @@
 
                         <div class="form-group">
 
-                            <label for="contact-message">Your Message</label>
+                            <label for="contact-message">Your Message (Shift + Enter for new lines)</label>
 
                             <textarea class="form-control"
                                       id="contact-message"
                                       name="contact-message"
                                       ng-model="vm.contactMessage"
-                                      ng-minlength="1"
-                                      ng-keydown="processEnter()"
+                                      ng-keydown="vm.processEnter( vm.submit )"
                                       placeholder="Enter your message"></textarea>
 
                             <div class="alert

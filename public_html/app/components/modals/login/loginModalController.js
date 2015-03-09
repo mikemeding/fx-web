@@ -77,13 +77,15 @@
             $scope.userData.usernameMissing = false ;
             $scope.userData.passwordMissing = false ;
 
-            if ( $scope.userData.username === undefined ){
+            if ( $scope.userData.username == undefined ||
+                 $scope.userData.username.trim() == "" ){
                 console.log( "username missing");
                 $scope.userData.usernameMissing = true ;
                 ret = false ;
             }
 
-            if ( $scope.userData.password === undefined ){
+            if ( $scope.userData.password == undefined ||
+                 $scope.userData.password.trim() == ""){
                 console.log( "password missing");
                 $scope.userData.passwordMissing = true ;
                 ret = false ;

@@ -53,7 +53,8 @@
             vm.nameMissing = false ;
             vm.messageMissing = false ;
 
-            if ( vm.contactName === undefined ) {
+            if ( vm.contactName == undefined ||
+                 vm.contactName.trim() == "" ) {
                 console.log( "name missing");
                 vm.nameMissing = true ;
                 ret = false ;
@@ -63,7 +64,8 @@
                 vm.emailMissing = true ;
                 ret = false ;
             }
-            if ( vm.contactMessage == undefined ){
+            if ( vm.contactMessage == undefined ||
+                 vm.contactMessage.trim() == "" ){
                 console.log( "message missing");
                 vm.messageMissing = true ;
                 ret = false ;
@@ -90,7 +92,7 @@
             return ret ;
         }
 
-        vm.processEnter = function(){
+        vm.processEnter = function( callback ){
             var shiftPressed = window.event.shiftKey ;
             var keyPressed = window.event.keyCode;
 
@@ -102,7 +104,7 @@
 
             } else if ( keyPressed == 13 ) {
 
-                vm.submit() ;
+                callback() ;
 
             }
         };

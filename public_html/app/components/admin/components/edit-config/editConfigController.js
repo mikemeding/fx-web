@@ -36,13 +36,15 @@
             vm.userData.titleMissing = false ;
 
             console.log( vm.userData.title);
-            if ( vm.userData.title == undefined ){
+            if ( vm.userData.title == undefined ||
+                 vm.userData.title.trim() == "" ){
                 console.log( "title missing");
                 vm.userData.titleMissing = true ;
                 ret = false ;
             }
 
-            if ( vm.userData.text == undefined ){
+            if ( vm.userData.text == undefined ||
+                 vm.userData.text.trim() == "" ){
                 console.log( "text missing");
                 vm.userData.textMissing = true ;
                 ret = false ;
@@ -52,7 +54,7 @@
 
         };
 
-        vm.processEnter = function(){
+        vm.processEnter = function( callback ){
             var shiftPressed = window.event.shiftKey ;
             var keyPressed = window.event.keyCode;
 
@@ -63,8 +65,8 @@
                 window.event.keyCode = 13;
 
             } else if ( keyPressed == 13 ) {
-
-                vm.submitNews() ;
+                window.event.preventDefault();
+                callback() ;
 
             }
         };
