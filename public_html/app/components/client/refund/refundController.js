@@ -24,8 +24,11 @@
         // create a message to display in our view
         vm.message = 'Someone wants their money back';
 
-        vm.gotoReport = function () {
-            $state.go('report' );
-        }
+        // no. just no. why would you do this and not tell me?
+        //vm.gotoReport = function () {
+        //    $state.go('report' );
+        //}
+
+
     }
 }());

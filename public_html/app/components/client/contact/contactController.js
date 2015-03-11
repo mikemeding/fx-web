@@ -24,18 +24,24 @@
         vm.title = 'Contact Us';
         vm.message = "This form is used to apply for a tax review. If you qualify, you will receive an email notifying you of your refund amount."
 
-
         vm.successAlert = false;
         vm.failureAlert = false;
 
-
+        /**
+         * Reset the fields of the form
+         */
         vm.reset = function () {
             vm.contactEmail = undefined ;
             vm.contactMessage = undefined ;
             vm.contactName = undefined ;
         }
+        vm.reset(); // gets done on page load
 
 
+        /**
+         * checks if the current state of the form is correct
+         * @returns {boolean}
+         */
         vm.validForm = function() {
             var pattern ;
             var re ;
@@ -51,7 +57,6 @@
             //  Missing tests
             vm.emailMissing = false ;
             vm.nameMissing = false ;
-            vm.messageMissing = false ;
 
             if ( vm.contactName == undefined ||
                  vm.contactName.trim() == "" ) {
@@ -64,18 +69,12 @@
                 vm.emailMissing = true ;
                 ret = false ;
             }
-            if ( vm.contactMessage == undefined ||
-                 vm.contactMessage.trim() == "" ){
-                console.log( "message missing");
-                vm.messageMissing = true ;
-                ret = false ;
-            }
+
 
             //  Regex tests
             vm.emailInvalid = false ;
 
             if ( email != ""  ) {
-
                 pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
                 re = new RegExp( pattern ) ; // a regular expression
                 test = re.test( email  ) ;
@@ -92,30 +91,12 @@
             return ret ;
         }
 
-        vm.processEnter = function( callback ){
-            var shiftPressed = window.event.shiftKey ;
-            var keyPressed = window.event.keyCode;
-
-            console.log(shiftPressed);
-            console.log(keyPressed);
-            if (shiftPressed && keyPressed == 13) {
-
-                window.event.keyCode = 13;
-
-            } else if ( keyPressed == 13 ) {
-
-                callback() ;
-
-            }
-        };
         vm.submit = function () {
-
-
             if( !vm.validForm() )
                 return ;
 
             //TODO: this needs to be integrated eventually
-            vm.contact.refundAmount = 0;
+            vm.refundAmount = 0;
 
             var request = {
                 method: 'POST', // replace with method above
@@ -123,7 +104,8 @@
                 data:{
                     email: vm.contactEmail ,
                     name: vm.contactName ,
-                    message: vm.contactMessage
+                    message: vm.contactMessage,
+                    refundAmount: vm.refundAmount
                 }
             };
 
@@ -143,8 +125,6 @@
                 });
         };
 
-
-        vm.reset(); // gets done on page load
 
     }
 }());

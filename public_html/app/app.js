@@ -16,7 +16,7 @@
 (function () { // this is to protect global namespace
     "use-strict"; // for strict syntax checking
 
-    var fxClient = angular.module('fxClient', ['ui.bootstrap', 'ui.router']);
+    var fxClient = angular.module('fxClient', ['ui.bootstrap', 'ui.router','ngCookies']);
     //Angular routing config
     fxClient.config(["$stateProvider",
         "$urlRouterProvider",
@@ -58,10 +58,10 @@
 
                 // Admin Routing
                 .state('admin', {
-                    abstract: true,
+                    //abstract: true,
                     url: '/admin',
                     templateUrl: "app/components/admin/adminIndex.html",
-
+                    controller:"AdminController as vm"
                 })
                 .state('admin.clients', {
                     url: '/clients',

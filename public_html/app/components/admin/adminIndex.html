@@ -16,12 +16,13 @@
 <div class="row" ng-app="fxAdmin">
     <div class="col-lg-2">
         <div class="panel panel-primary">
-            <div class="panel-heading">Admin Controls {{loggedInUser}}</div>
+            <div class="panel-heading">Admin Controls</div>
             <div class="panel-body">
                 <ul class="nav nav-pills nav-stacked">
                     <li role="presentation"><button class="btn btn-default" ui-sref="admin.clients">Clients</button></li>
                     <li role="presentation"><button class="btn btn-default" ui-sref="admin.find-clients">Find new clients</button></li>
                     <li role="presentation"><button class="btn btn-default" ui-sref="admin.edit-config">Edit Site</button></li>
+                    <li role="presentation"><button class="btn btn-default" ui-sref="home" data-ng-click="vm.logout()">Logout</button></li>
                 </ul>
             </div>
         </div>

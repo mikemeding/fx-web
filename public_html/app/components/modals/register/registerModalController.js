@@ -57,7 +57,7 @@
     /**
      * The per instance modal controller. This handles the actual submission of the data
      */
-    app.controller("RegisterModalInstanceCtrl", ['$scope', '$modalInstance', 'userData', 'alert', '$http', '$state', function ($scope, $modalInstance, userData, alert, $http, $state) {
+    app.controller("RegisterModalInstanceCtrl", ['$scope', '$modalInstance', 'userData', 'alert', '$http', '$state','$cookieStore', function ($scope, $modalInstance, userData, alert, $http, $state,$cookieStore) {
         $scope.userData = userData;
         $scope.alert = alert;
         $scope.alertMessage = "Invalid information given.";
@@ -182,9 +182,11 @@
                         console.log("Registration Sucessful");
                         console.log('status: ' + status);
                         $scope.alert = false;
-                        $state.go("admin.find-clients");
+                        $state.go("admin.clients");
                         $modalInstance.close();
                         console.log("user created");
+                        $cookieStore.remove('user'); // remove old cookie if it exists
+                        $cookieStore.put("user",$scope.userData.username); // add cookie to track logged in user
 
 
                     })

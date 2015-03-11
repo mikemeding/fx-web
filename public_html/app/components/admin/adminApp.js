@@ -10,33 +10,21 @@
  ========================================================================== 
  */
 //
-//(function () { // this is to protect global namespace
-//    "use-strict"; // for strict syntax checking
-//
-//    var fxAdmin = angular.module('fxAdmin', ['ui.bootstrap', 'ui.router']);
-//
-//    //Angular routing config
-//    fxAdmin.config(["$stateProvider",
-//        "$urlRouterProvider",
-//        function ($stateProvider, $urlRouterProvider) {
-//            //$urlRouterProvider.otherwise("clients");
-//
-//            $stateProvider
-//                // Admin Routing
-//                .state("clients", {
-//                    url: "/admin/clients",
-//                    templateUrl: "app/components/admin/components/clients/clientsView.html",
-//                    controller: "ClientsController as vm"
-//                })
-//                .state("edit-config", {
-//                    url: "/admin/edit-config",
-//                    templateUrl: "app/components/admin/components/edit-config/editConfigView.html",
-//                    controller: "EditConfigController as vm"
-//                })
-//                .state("find-clients", {
-//                    url: "/admin/find-clients",
-//                    templateUrl: "app/components/admin/components/find-clients/findClientsView.html",
-//                    controller: "FindClientsController as vm"
-//                });
-//        }]);
-//})();
+(function () { // this is to protect global namespace
+    "use-strict"; // for strict syntax checking
+
+    var app = angular.module('fxClient');
+
+    app.controller("AdminController",
+        ["$http", "$cookieStore", AdminController]);
+
+    function AdminController($http, $cookieStore) {
+        var vm = this;
+
+        vm.logout = function () {
+            console.log("Removing cookie, user: " + $cookieStore.get('user'));
+            $cookieStore.remove('user');
+        }
+    }
+
+})();
