@@ -16,35 +16,22 @@
 
         <h1>{{ vm.title }}</h1>
 
-        <div class="panel
-                    panel-primary">
-
-            <div class="panel-heading">
-
-                <h2 style="color:#ffffff">Search Clients</h2>
-
+        <form>
+            <div class="form-group">
+                <label for="clientSearch">Search Clients</label>
+                <!-- string is used to limit results -->
+                <input class="form-control"
+                       data-ng-model="vm.query"
+                       id="clientSearch"
+                       placeholder="Enter search string"
+                       type="text"/>
             </div>
-
-            <div class="panel-body">
-
-                <div class="form-group">
-
-                    <!-- string is used to limit results -->
-                    <input  class="form-control"
-                            data-ng-model="vm.query"
-                            id="clientSearch"
-                            placeholder="Enter search string"
-                            type="text"/>
-
-                </div>
-
-            </div>
-
-        </div>
+        </form>
 
         <div ng-show="vm.alert"
              class="alert alert-danger"
-             role="alert">Could not get contacts from database</div>
+             role="alert">Could not get contacts from database
+        </div>
 
         <table class="table table-striped">
 
@@ -52,18 +39,18 @@
 
                 <thead>
 
-                    <!-- table columns allow for sorting -->
-                    <th><a  href=""
-                            data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
+                <!-- table columns allow for sorting -->
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
 
-                    <th><a  href=""
-                            data-ng-click="vm.sortOrder='email'; reverse=!reverse">Email</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='email'; reverse=!reverse">Email</a></th>
 
-                    <th><a  href=""
-                            data-ng-click="vm.sortOrder='message'; reverse=!reverse">Message</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='message'; reverse=!reverse">Message</a></th>
 
-                    <th><a  href=""
-                            data-ng-click="vm.sortOrder='refundAmount'; reverse=!reverse">Refund Amount</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='refundAmount'; reverse=!reverse">Refund Amount</a></th>
 
                 </thead>
 
