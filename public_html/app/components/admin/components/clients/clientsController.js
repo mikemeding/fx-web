@@ -27,23 +27,52 @@
         vm.alert = false;
         vm.userData = {};
 
-        var request = {
-            method: 'GET',
-            url: 'http://www.mikemeding.com/fx/contact/selectAll'
-        };
+        /**
+         * Delete a given client from the database
+         * @param client
+         */
+        vm.deleteClient = function(client){
+            console.log("removing client with ID:" + client);
 
-        $http(request)
-            .success(function (data, status, headers, config, response) { // If call successful
-                console.log("Get all contacts successful");
-                console.log('data:' + data);
-                vm.alert = false;
-                vm.userData = data;
-            })
-            .error(function (data, status, headers, config, response) { // If call fails
-                console.log("Get all contacts failed");
-                console.log('response: ' + response); // response will contain reason why
-                vm.alert = true;
-            });
+            var request = {
+                method: 'POST',
+                url: 'http://www.mikemeding.com/fx/contact/removeContact',
+                data: {"id": client.id} // we delete using the unique news id number
+            };
+            $http(request)
+                .success(function (data, status, headers, config, response) { // If call successful
+                    console.log("delete News Sucessful");
+                    vm.getClients(); // to refresh news articles
+                })
+                .error(function (data, status, headers, config, response) { // If call fails
+                    console.log("delete News Failed");
+                    console.log('response: ' + response); // response will contain reason why
+                });
+        }
+
+        /**
+         * Get all clients from the database to display to the page
+         */
+        vm.getClients = function () {
+            var request = {
+                method: 'GET',
+                url: 'http://www.mikemeding.com/fx/contact/selectAll'
+            };
+
+            $http(request)
+                .success(function (data, status, headers, config, response) { // If call successful
+                    console.log("Get all contacts successful");
+                    console.log('data:' + data);
+                    vm.alert = false;
+                    vm.userData = data;
+                })
+                .error(function (data, status, headers, config, response) { // If call fails
+                    console.log("Get all contacts failed");
+                    console.log('response: ' + response); // response will contain reason why
+                    vm.alert = true;
+                });
+        }
+        vm.getClients(); // call on inital page load
 
 
         /**

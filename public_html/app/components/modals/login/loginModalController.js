@@ -126,7 +126,7 @@
                     console.log('status: ' + status);
                     $scope.alert = false;
                     $modalInstance.close();
-                    $state.go("admin.find-clients");
+                    $state.go("admin.clients");
                 })
                 .error(function (data, status, headers, config, response) {
                     console.log("Login Failed");

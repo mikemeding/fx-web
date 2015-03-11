@@ -12,8 +12,6 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
 
-    <div class="container">
-
         <h1>{{ vm.title }}</h1>
 
         <form>
@@ -36,10 +34,9 @@
         <table class="table table-striped">
 
             <tr>
-
                 <thead>
-
                 <!-- table columns allow for sorting -->
+                <th></th>
                 <th><a href=""
                        data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
 
@@ -51,14 +48,12 @@
 
                 <th><a href=""
                        data-ng-click="vm.sortOrder='refundAmount'; reverse=!reverse">Refund Amount</a></th>
-
                 </thead>
-
             </tr>
 
             <!-- Added filter and sorting capabilities -->
             <tr ng-repeat="client in vm.userData | filter:vm.searchFilter | orderBy:vm.sortOrder:reverse">
-
+                <td><button class="btn btn-danger btn-sm" ng-click="vm.deleteClient(client)">del</button></td>
                 <td>{{client.name}}</td>
 
                 <td>{{client.email}}</td>
@@ -70,7 +65,5 @@
             </tr>
 
         </table>
-
-    </div>
 
 </div>

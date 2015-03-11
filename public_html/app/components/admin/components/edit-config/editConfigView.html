@@ -11,80 +11,84 @@
 -->
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
+    <h1>{{ vm.title }}</h1>
 
-    <div class="container">
-
-        <h1>{{ vm.title }}</h1>
-
-        <div class="panel
-                    panel-primary">
-
-            <div class="panel-heading">
-
-                Add News Article
-
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Add News Article
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-success" role="alert" ng-show="vm.successAlert">Article submitted successfully.
             </div>
+            <div class="alert alert-danger" role="alert" ng-show="vm.failureAlert">Failure submitting article.</div>
 
-            <div class="panel-body">
+            <form ng-submit="vm.submitNews()">
+                <div class="form-group">
+                    <label for="newsTitle">Article Title</label>
+                    <input autofocus
+                           type="text"
+                           class="form-control"
+                           id="newsTitle"
+                           placeholder="Enter title"
+                           ng-model="vm.userData.title"/>
 
-                <div class="alert
-                            alert-success"
-                     role="alert"
-                     ng-show="vm.successAlert">Article submitted successfully.</div>
-
-                <div class="alert
-                            alert-danger"
-                     role="alert"
-                     ng-show="vm.failureAlert">Failure submitting article.</div>
-
-                <form ng-submit="vm.submitNews()">
-
-                    <div class="form-group">
-
-                        <label for="newsTitle">Article Title</label>
-
-                        <input  autofocus
-                                type="text"
-                                class="form-control"
-                                id="newsTitle"
-                                placeholder="Enter title"
-                                ng-model="vm.userData.title"/>
-
-                        <div class="alert
-                                    alert-danger"
-                             role="alert"
-                             ng-show="vm.userData.titleMissing">The title is required.</div>
-
+                    <div class="alert alert-danger" role="alert" ng-show="vm.userData.titleMissing">The title is
+                        required.
                     </div>
+                </div>
 
-                    <div class="form-group">
+                <div class="form-group">
+                    <label for="newsText">News Text</label>
+                    <textarea type="text" class="form-control" id="newsText" placeholder="Enter article body text"
+                              ng-model="vm.userData.text"></textarea>
 
-                        <label for="newsText">Text (Shift + Enter for new lines)</label>
-
-                        <textarea   type="text"
-                                    class="form-control"
-                                    id="newsText"
-                                    placeholder="Enter article body text"
-                                    ng-model="vm.userData.text"
-                                    ng-keydown="vm.processEnter( vm.SubmitNews )"
-                                     ></textarea>
-
-                        <div class="alert
-                                    alert-danger"
-                             role="alert"
-                             ng-show="vm.userData.textMissing">The article is required.</div>
-
+                    <div class="alert alert-danger" role="alert" ng-show="vm.userData.textMissing">The article is
+                        required.
                     </div>
+                </div>
 
-                    <button type="submit"
-                            class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Submit</button>
 
-                </form>
-
-            </div>
+            </form>
+        </div>
+    </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Current News Articles
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-danger" role="alert" ng-show="vm.getNewsAlert">Failed at getting news articles</div>
+            <!--Search filter for table-->
+            <form>
+                <div class="form-group">
+                    <label for="searchFilter">Search News Articles</label>
+                    <!-- string is used to limit results -->
+                    <input class="form-control"
+                           ng-model="searchTerm"
+                           id="searchFilter"
+                           placeholder="Enter search string"
+                           type="text"/>
+                </div>
+            </form>
+            <!--News articles table-->
+            <table class="table">
+                <tr>
+                    <thead>
+                        <th></th>
+                        <th><a href="" data-ng-click="vm.sortOrder='title'; reverse=!reverse">Title</a></th>
+                        <th><a href="" data-ng-click="vm.sortOrder='user'; reverse=!reverse">User</a></th>
+                        <th><a href="" data-ng-click="vm.sortOrder='text'; reverse=!reverse">Text</a></th>
+                    </thead>
+                </tr>
+                <tr ng-repeat="item in vm.newsArticles | filter:searchTerm | orderBy:vm.sortOrder">
+                    <td><button class="btn btn-danger btn-sm" ng-click="vm.deleteNewsArticle(item)">del</button></td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.user}}</td>
+                    <td>{{item.text}}</td>
+                </tr>
+            </table>
 
         </div>
-
     </div>
 
 </div>

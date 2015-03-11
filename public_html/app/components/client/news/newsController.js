@@ -124,8 +124,7 @@
         var request = {
             method: 'GET', // replace with method above
             // path must be altered to point at correct table
-            url: 'http://www.mikemeding.com/fx/news/selectAll', // for my deployed backend
-
+            url: 'http://www.mikemeding.com/fx/news/selectAll' // for my deployed backend
         };
         $http(request)
             .success(function (data, status, headers, config, response) { // If call successful
@@ -133,13 +132,11 @@
                 console.log('data: ' + data[0].id);
                 vm.alert = false;
                 vm.newsArticles = data;
-                // DO SUCCESS STUFF HERE
             })
             .error(function (data, status, headers, config, response) { // If call fails
                 console.log("selectAll News Failed");
                 console.log('response: ' + response); // response will contain reason why
                 vm.alert = true;
-                // DO FAIL STUFF HERE
             });
 
         vm.rssGet();

@@ -22,7 +22,7 @@
         var vm = this;
 
         vm.title = 'Contact Us';
-        vm.message = "This form can be used to contact us for any questions on our services, or to see if you qualify for a refund."
+        vm.message = "This form is used to apply for a tax review. If you qualify, you will receive an email notifying you of your refund amount."
 
 
         vm.successAlert = false;
