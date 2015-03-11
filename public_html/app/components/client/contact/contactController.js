@@ -31,9 +31,9 @@
          * Reset the fields of the form
          */
         vm.reset = function () {
-            vm.contactEmail = undefined ;
-            vm.contactMessage = undefined ;
-            vm.contactName = undefined ;
+            vm.contactEmail = '' ;
+            vm.contactMessage = '' ;
+            vm.contactName = '' ;
         }
         vm.reset(); // gets done on page load
 
@@ -43,57 +43,73 @@
          * @returns {boolean}
          */
         vm.validForm = function() {
-            var pattern ;
-            var re ;
-            var ret ;
-            var test ;
-            var email ;
-
-            ret = true ;
-
-            //  due to invalid returned on email by angular
-            email = document.getElementById( "contact-email").value.trim() ;
-
-            //  Missing tests
-            vm.emailMissing = false ;
-            vm.nameMissing = false ;
-
-            if ( vm.contactName == undefined ||
-                 vm.contactName.trim() == "" ) {
-                console.log( "name missing");
-                vm.nameMissing = true ;
-                ret = false ;
-            }
-            if ( email == "" ){
-                console.log( "email missing");
-                vm.emailMissing = true ;
-                ret = false ;
+            if(vm.contactEmail === '' || vm.contactEmail === ''){
+                return false;
+            } else {
+                return true;
             }
 
+            //TODO: this needs to be fixed. got it working for our demo
 
-            //  Regex tests
-            vm.emailInvalid = false ;
-
-            if ( email != ""  ) {
-                pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
-                re = new RegExp( pattern ) ; // a regular expression
-                test = re.test( email  ) ;
-                console.log( test ) ;
-
-                if ( !test ){
-                    console.log( "email invalid");
-                    vm.emailInvalid = true ;
-                    ret = false ;
-                }
-
-            }
-
-            return ret ;
+            //var pattern ;
+            //var re ;
+            //var ret ;
+            //var test ;
+            //var email ;
+            //
+            //ret = true ;
+            //
+            ////  due to invalid returned on email by angular
+            //email = document.getElementById( "contact-email").value.trim() ;
+            //
+            ////  Missing tests
+            //vm.emailMissing = false ;
+            //vm.nameMissing = false ;
+            //
+            //if ( vm.contactName == undefined ||
+            //     vm.contactName.trim() == "" ) {
+            //    console.log( "name missing");
+            //    vm.nameMissing = true ;
+            //    ret = false ;
+            //}
+            //if ( email == "" ){
+            //    console.log( "email missing");
+            //    vm.emailMissing = true ;
+            //    ret = false ;
+            //}
+            //
+            //
+            ////  Regex tests
+            //vm.emailInvalid = false ;
+            //
+            //if ( email != ""  ) {
+            //    pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
+            //    re = new RegExp( pattern ) ; // a regular expression
+            //    test = re.test( email  ) ;
+            //    console.log( test ) ;
+            //
+            //    if ( !test ){
+            //        console.log( "email invalid");
+            //        vm.emailInvalid = true ;
+            //        ret = false ;
+            //    }
+            //
+            //}
+            //
+            //return ret ;
         }
 
-        vm.submit = function () {
-            if( !vm.validForm() )
-                return ;
+        vm.submitContact = function () {
+            console.log("submitting new contact to database");
+            if( !vm.validForm() ){
+                vm.failureAlert = true;
+                vm.successAlert = false;
+                return;
+            } else {
+                vm.failureAlert = false;
+                vm.successAlert = false;
+            }
+
 
             //TODO: this needs to be integrated eventually
             vm.refundAmount = 0;
