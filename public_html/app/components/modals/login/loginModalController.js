@@ -16,12 +16,11 @@
 
     var app = angular.module('fxClient')
         .controller('LoginModalController',
-            ['$scope', '$modal', function ($scope, $modal) {
+        ['$scope', '$modal', '$cookieStore', '$state', function ($scope, $modal, $cookieStore, $state) {
 
             // JSON object for holding username and password
             $scope.userData = {};
             $scope.alert = false;
-
 
             /**
              * Opens the main page login modal
@@ -31,28 +30,43 @@
             $scope.open = function () {
                 this.reset();
 
-                // this is simalar to routes except with pre-loaded templates. See index.html <head> tag
-                var modalInstance = $modal.open({
-                    templateUrl: 'app/components/modals/login/loginModalTemplate.html',
-                    controller: 'loginModalInstanceCtrl',
-                    resolve: { // this resolves the local vars of Instance Ctrl
-                        userData: function () {
-                            return $scope.userData;
-                        },
-                        alert: function () {
-                            return $scope.alert;
+                if ($scope.getLoggedInUser() === "Login") {
+                    // this is simalar to routes except with pre-loaded templates. See index.html <head> tag
+                    var modalInstance = $modal.open({
+                        templateUrl: 'app/components/modals/login/loginModalTemplate.html',
+                        controller: 'loginModalInstanceCtrl',
+                        resolve: { // this resolves the local vars of Instance Ctrl
+                            userData: function () {
+                                return $scope.userData;
+                            },
+                            alert: function () {
+                                return $scope.alert;
+                            }
                         }
-                    }
-                });
-
+                    });
+                } else {
+                    $state.go("admin.clients"); // navigate to admin.clients page
+                }
             };
 
             /**
              * when the modal goes out of focus do not save user data
              */
             $scope.reset = function () {
-                this.userData = {};
+                this.userData = {}
+                $scope.alert = false;
             };
+
+            /**
+             * gets the logged in user if the cookie exists
+             */
+            $scope.getLoggedInUser = function () {
+                var user = $cookieStore.get('user');
+                if (user === '' || user === undefined) {
+                    user = 'Login';
+                }
+                return user;
+            }
 
         }]);
 
@@ -62,47 +76,23 @@
     app.controller("loginModalInstanceCtrl", ['$scope', '$modalInstance', 'userData', 'alert', '$http', '$state', '$cookieStore', function ($scope, $modalInstance, userData, alert, $http, $state, $cookieStore) {
         $scope.userData = userData;
         $scope.alert = alert;
-
-
-        $scope.userData.usernameMissing = false;
-        $scope.userData.passwordMissing = false;
+        $scope.alertMessage = '';
 
         $scope.validateLoginForm = function () {
-
-            var ret;
-            var pattern;
-            var re;
-            var test;
-
-            ret = true;
-
-            $scope.userData.usernameMissing = false;
-            $scope.userData.passwordMissing = false;
+            $scope.alertMessage = '';
+            var ret = true;
 
             if ($scope.userData.username == undefined ||
                 $scope.userData.username.trim() == "") {
                 console.log("username missing");
-                $scope.userData.usernameMissing = true;
+                $scope.alertMessage = "Please enter both a username and password.";
                 ret = false;
             }
 
             if ($scope.userData.password == undefined ||
                 $scope.userData.password.trim() == "") {
                 console.log("password missing");
-                $scope.userData.passwordMissing = true;
-                ret = false;
-            }
-
-
-            $scope.userData.passwordInvalid = false;
-
-            pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-            re = new RegExp(pattern); // a regular expression
-            test = re.test($scope.userData.password);
-            console.log(test);
-            if ($scope.userData.password !== undefined && !test) {
-                console.log("password invalid");
-                $scope.userData.passwordInvalid = true;
+                $scope.alertMessage = "Please enter both a username and password.";
                 ret = false;
             }
 
@@ -112,8 +102,10 @@
         $scope.ok = function () {
 
             console.log($scope.userData);
-            if (!$scope.validateLoginForm())
+            if (!$scope.validateLoginForm()) {
+                $scope.alert = true;
                 return;
+            }
 
             var request = {
                 method: 'POST',
@@ -129,11 +121,12 @@
                     $modalInstance.close(); // close our modal
                     $state.go("admin.clients"); // navigate to admin.clients page
                     $cookieStore.remove('user'); // remove old cookie if it exists
-                    $cookieStore.put("user",$scope.userData.username); // add cookie to track logged in user
+                    $cookieStore.put("user", $scope.userData.username); // add cookie to track logged in user
                 })
                 .error(function (data, status, headers, config, response) {
                     console.log("Login Failed");
                     console.log('status: ' + status);
+                    $scope.alertMessage = "Incorrect username or password.";
                     $scope.alert = true;
                 });
         };

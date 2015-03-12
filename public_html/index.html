@@ -105,14 +105,19 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+
                     <li>
                         <div ng-controller="LoginModalController">
-                            <button type="button" class="col-xs-12 btn btn-default navbar-btn" ng-click="open()">Login</button>
+                            <button type="button" class="col-xs-12 btn btn-default navbar-btn" ng-click="open()">
+                                {{ getLoggedInUser() === 'Login' ? "Login" : "Logged in as: " + getLoggedInUser() }}
+                            </button>
                         </div>
                     </li>
                     <li>
                         <div ng-controller="RegisterModalController">
-                            <button type="button" class="col-xs-12 btn btn-warning navbar-btn" ng-click="open()">Register</button>
+                            <button type="button" class="col-xs-12 btn btn-warning navbar-btn" ng-click="open()">
+                                Register
+                            </button>
                         </div>
                     </li>
                 </ul>
@@ -128,7 +133,7 @@
 
     <hr>
     <!--The little copyright footer-->
-    <footer>
+    <footer class="text-center">
         <p>Copyright &copy; 2015 FundsXpert</p>
     </footer>
 </div>

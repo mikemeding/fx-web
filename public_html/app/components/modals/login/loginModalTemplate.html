@@ -19,64 +19,26 @@
 
 <div class="modal-body">
 
-    <div ng-show="alert"
-         class="alert
-                alert-danger"
-         role="alert">Incorrect Username or Password. Please try again.</div>
+    <div ng-show="alert" class="alert alert-danger" role="alert">{{alertMessage}}</div>
 
     <form ng-submit="ok()">
 
         <div class="form-group">
-
             <label for="loginModalUsername">Username</label>
-
-            <input id="loginModalUsername"
-                   ng-model="userData.username"
-                   type="text"
-                   class="form-control"
-                   placeholder="Enter username"
-                   autofocus
-                   required />
-
-            <div class="alert
-                        alert-danger"
-                 role="alert"
-                 ng-show="userData.usernameMissing">Username is required.</div>
-
+            <input id="loginModalUsername" ng-model="userData.username"
+                   type="text" class="form-control" placeholder="Enter username" autofocus required/>
         </div>
 
         <div class="form-group">
-
             <label for="loginModalPassword">Password</label>
-
-            <input id="loginModalPassword"
-                   ng-model="userData.password"
-                   ng-keyup="$event.keyCode == 13 && ok()"
-                   type="password"
-                   class="form-control"
-                   placeholder="Enter password"
-                   required />
-
-            <div class="alert
-                        alert-danger"
-                 role="alert"
-                 ng-show="userData.passwordMissing">Password is required.</div>
-
-            <div class="alert
-                        alert-danger"
-                 role="alert"
-                 ng-show="userData.passwordInvalid">Check your password as the minimum requirements are not met.</div>
-
+            <input id="loginModalPassword" ng-model="userData.password"
+                   ng-keyup="$event.keyCode == 13 && ok()" type="password" class="form-control"
+                   placeholder="Enter password" required/>
         </div>
-
     </form>
-
 </div>
 
 <div class="modal-footer">
-
     <button class="btn btn-primary" ng-click="ok()">OK</button>
-
     <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-
 </div>
