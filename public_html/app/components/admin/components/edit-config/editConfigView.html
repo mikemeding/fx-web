@@ -74,14 +74,16 @@
             <table class="table">
                 <tr>
                     <thead>
-                        <th></th>
-                        <th><a href="" data-ng-click="vm.sortOrder='title'; reverse=!reverse">Title</a></th>
-                        <th><a href="" data-ng-click="vm.sortOrder='user'; reverse=!reverse">User</a></th>
-                        <th><a href="" data-ng-click="vm.sortOrder='text'; reverse=!reverse">Text</a></th>
+                    <th></th>
+                    <th><a href="" data-ng-click="vm.sortOrder='title'; reverse=!reverse">Title</a></th>
+                    <th><a href="" data-ng-click="vm.sortOrder='user'; reverse=!reverse">User</a></th>
+                    <th><a href="" data-ng-click="vm.sortOrder='text'; reverse=!reverse">Text</a></th>
                     </thead>
                 </tr>
                 <tr ng-repeat="item in vm.newsArticles | filter:searchTerm | orderBy:vm.sortOrder">
-                    <td><button class="btn btn-danger btn-sm" ng-click="vm.deleteNewsArticle(item)">del</button></td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" ng-click="vm.deleteNewsArticle(item)">del</button>
+                    </td>
                     <td>{{item.title}}</td>
                     <td>{{item.user}}</td>
                     <td>{{item.text}}</td>
@@ -91,4 +93,81 @@
         </div>
     </div>
 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Add New User
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-success" role="alert" ng-show="vm.userAlert">{{vm.userAlertMessage}}</div>
+
+            <form ng-submit="vm.submitNewUser()">
+                <div class="form-group">
+                    <label for="userTitle">Username</label>
+                    <input autofocus
+                           type="text"
+                           class="form-control"
+                           id="userTitle"
+                           placeholder="Enter title"
+                           ng-model="vm.userData.title"/>
+
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Current FundsXpert Users
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-danger" role="alert" ng-show="vm.userTableAlert">{{vm.userTableAlertMessage}}</div>
+
+            <h4>Pending Approval</h4>
+
+            <table class="table">
+                <tr>
+                    <thead>
+                    <th></th>
+                    <th>blah</th>
+                    <th>blah</th>
+                    <th>blah</th>
+                    </thead>
+                </tr>
+                <tr>
+                    <td>item</td>
+                    <td>item</td>
+                    <td>item</td>
+                    <td>item</td>
+                </tr>
+            </table>
+
+            <h4>Current Users</h4>
+
+            <table class="table">
+                <tr>
+                    <thead>
+                    <th></th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    </thead>
+                </tr>
+                <tr ng-repeat="user in vm.activeUsers">
+                    <th>
+                        <button class="btn btn-danger btn-sm" ng-click="vm.deleteUser(user)">del</button>
+                    </th>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.active}}</td>
+                </tr>
+            </table>
+
+            </form>
+        </div>
+    </div>
 </div>

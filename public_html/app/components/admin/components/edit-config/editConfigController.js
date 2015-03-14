@@ -143,5 +143,76 @@
                     console.log('response: ' + response); // response will contain reason why
                 });
         }
+
+
+        //================================================================//
+
+        vm.userTableAlert = false;
+        vm.userTableAlertMessage = "";
+        vm.userAlert = false;
+        vm.userAlertMessage = "";
+        vm.activeUsers = [];
+        /**
+         * Get all currently active users from the database
+         */
+        vm.getAllUsers = function () {
+            vm.userTableAlert = false;
+
+            var request = {
+                method: 'GET',
+                url: 'http://www.mikemeding.com/fx/user/getAllActiveUsers'
+            };
+            $http(request)
+                .success(function (data, status, headers, config, response) { // If call successful
+                    console.log("get all users successful");
+                    console.log(data);
+                    vm.activeUsers = data;
+                })
+                .error(function (data, status, headers, config, response) { // If call fails
+                    console.log("get all users failed");
+                    console.log('response: ' + response); // response will contain reason why
+                    vm.userTableAlert = true;
+                    vm.userTableAlertMessage = "failed to get users";
+                });
+
+        }
+        vm.getAllUsers(); // on page load
+
+        /**
+         * Remove user from the database
+         * TODO: fix database issue first
+         */
+        vm.deleteUser = function (user) {
+            //vm.userTableAlert = false;
+            //console.log(user);
+            //console.log(user.username);
+            //
+            //var request = {
+            //    method: 'POST',
+            //    url: 'http://www.mikemeding.com/fx/user/deleteUser',
+            //    data: {'username':user.username}
+            //};
+            //$http(request)
+            //    .success(function (data, status, headers, config, response) { // If call successful
+            //        console.log("remove user successful");
+            //        console.log('response: ' + response); // response will contain reason why
+            //    })
+            //    .error(function (data, status, headers, config, response) { // If call fails
+            //        console.log("get all users failed");
+            //        console.log('status: ' + status); // response will contain reason why
+            //        vm.userTableAlert = true;
+            //        vm.userTableAlertMessage = "failed to remove user";
+            //    });
+
+        }
+
+        /**
+         * Submit a new user directly to the database. (mimic register form)
+         */
+        vm.currentUsers = '';
+        vm.submitNewUser = function () {
+
+        }
     }
+
 })();
