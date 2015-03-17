@@ -1,0 +1,5 @@
+/*Styling ckeditor*/
+.cke_top,
+.cke_bottom {
+    background: #ECF0F1 !important;
+}

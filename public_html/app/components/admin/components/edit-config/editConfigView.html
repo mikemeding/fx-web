@@ -39,8 +39,12 @@
 
                 <div class="form-group">
                     <label for="newsText">News Text</label>
-                    <textarea type="text" class="form-control" id="newsText" placeholder="Enter article body text"
+                    <textarea class="form-control" id="newsText" name="newsText" placeholder="Enter article body text"
                               ng-model="vm.userData.text"></textarea>
+                    <!-- invoke ckeditor -->
+                    <script type="text/javascript">
+                        CKEDITOR.replace( 'newsText' );
+                    </script>
 
                     <div class="alert alert-danger" role="alert" ng-show="vm.userData.textMissing">The article is
                         required.

@@ -72,6 +72,10 @@
                             <textarea class="form-control" id="contact-message" name="contact-message"
                                       ng-model="vm.contactMessage"
                                       placeholder="Enter your message"></textarea>
+                            <!-- invoke ckeditor -->
+                            <script type="text/javascript">
+                                CKEDITOR.replace( 'contact-message' );
+                            </script>
                         </div>
 
                         <a class="col-md-2 col-xs-6 btn btn-lg btn-primary" type="submit" data-ng-click="vm.submitContact()">Submit</a>
