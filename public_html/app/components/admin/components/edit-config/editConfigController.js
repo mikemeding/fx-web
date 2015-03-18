@@ -180,29 +180,27 @@
 
         /**
          * Remove user from the database
-         * TODO: fix database issue first
          */
-        vm.deleteUser = function (user) {
-            //vm.userTableAlert = false;
-            //console.log(user);
-            //console.log(user.username);
-            //
-            //var request = {
-            //    method: 'POST',
-            //    url: 'http://www.mikemeding.com/fx/user/deleteUser',
-            //    data: {'username':user.username}
-            //};
-            //$http(request)
-            //    .success(function (data, status, headers, config, response) { // If call successful
-            //        console.log("remove user successful");
-            //        console.log('response: ' + response); // response will contain reason why
-            //    })
-            //    .error(function (data, status, headers, config, response) { // If call fails
-            //        console.log("get all users failed");
-            //        console.log('status: ' + status); // response will contain reason why
-            //        vm.userTableAlert = true;
-            //        vm.userTableAlertMessage = "failed to remove user";
-            //    });
+        vm.deleteUser = function (id) {
+            vm.userTableAlert = false;
+            console.log("user id: "+id);
+
+            var request = {
+                method: 'POST',
+                url: 'http://www.mikemeding.com/fx/user/deleteUser',
+                data: {'id':id}
+            };
+            $http(request)
+                .success(function (data, status, headers, config, response) { // If call successful
+                    console.log("remove user successful");
+                    vm.getAllUsers(); // update our table data
+                })
+                .error(function (data, status, headers, config, response) { // If call fails
+                    console.log("delete user failed");
+                    console.log('status: ' + status); // response will contain reason why
+                    vm.userTableAlert = true;
+                    vm.userTableAlertMessage = "failed to remove user";
+                });
 
         }
 
