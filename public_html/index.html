@@ -37,6 +37,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
+    <!-- ckeditor http://ckeditor.com/-->
+    <script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="assets/css/ckeditor.css">
+
     <!-- Our Global Style Sheets -->
     <link rel="stylesheet" href="assets/css/main.css">
     <!--Custom validation modal styling-->
@@ -110,7 +114,7 @@
                     <li>
                         <div ng-controller="LoginModalController">
                             <button type="button" class="col-xs-12 btn btn-default navbar-btn" ng-click="open()">
-                                {{ getLoggedInUser() === 'Login' ? "Login" : "Logged in as: " + getLoggedInUser() }}
+                                {{ getLoggedInUser() === 'Login' ? "Login" : "Logged in as " + getLoggedInUser() }}
                             </button>
                         </div>
                     </li>
