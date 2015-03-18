@@ -11,92 +11,94 @@
 -->
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
-        <h1>{{ vm.title }}</h1>
+    <h1>{{ vm.title }}</h1>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading"> Search by market value range</div>
+    <div class="panel panel-primary">
+        <div class="panel-heading"> Search by market value range</div>
 
-            <div class="panel-body">
-                <form ng-submit="vm.findClientsInRange()">
-                    <div class="form-group">
-                        <label for="year">Taxing Year</label>
+        <div class="panel-body">
+            <form ng-submit="vm.findClientsInRange()">
+                <div class="form-group">
+                    <label for="year">Taxing Year</label>
 
-                        <div>
-                            <!--TODO: this is messy-->
-                            <button type="button" id="year" class="dropdown btn btn-sm btn-default" dropdown
-                                    on-toggle="toggled(open)">
-                                <h5 href class="dropdown-toggle" dropdown-toggle>
-                                    {{vm.selectedYear}} <span class="caret"></span>
-                                </h5>
-                                <ul class="dropdown-menu">
-                                    <li ng-repeat="choice in vm.years">
-                                        <a ng-click="vm.yearToggle(choice)">{{choice}}</a>
-                                    </li>
-                                </ul>
-                            </button>
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="fromValue">From Value</label>
-                        <input id="fromValue" ng-model="vm.data.fromValue" type="number" class="form-control"
-                               placeholder="From Value">
-                    </div>
-                    <div class="form-group">
-                        <label for="toValue">To Value</label>
-                        <input id="toValue" ng-model="vm.data.toValue" type="number" class="form-control"
-                               placeholder="To Value">
+                    <div>
+                        <!--TODO: this is messy-->
+                        <button type="button" id="year" class="dropdown btn btn-sm btn-default" dropdown
+                                on-toggle="toggled(open)">
+                            <h5 href class="dropdown-toggle" dropdown-toggle>
+                                {{vm.selectedYear}} <span class="caret"></span>
+                            </h5>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="choice in vm.years">
+                                    <a ng-click="vm.yearToggle(choice)">{{choice}}</a>
+                                </li>
+                            </ul>
+                        </button>
                     </div>
 
-                    <button class="btn btn-primary" type="submit">Search</button>
-                </form>
-            </div>
+                </div>
+                <div class="form-group">
+                    <label for="fromValue">From Value</label>
+                    <input id="fromValue" ng-model="vm.data.fromValue" type="number" class="form-control"
+                           placeholder="From Value">
+                </div>
+                <div class="form-group">
+                    <label for="toValue">To Value</label>
+                    <input id="toValue" ng-model="vm.data.toValue" type="number" class="form-control"
+                           placeholder="To Value">
+                </div>
+
+                <button class="btn btn-primary" type="submit">Search</button>
+            </form>
         </div>
+    </div>
 
-        <!--Search filter for range table-->
-        <form ng-show="vm.tableVisibility">
-            <div class="form-group">
-                <label for="searchFilter">Search Clients</label>
-                <!-- string is used to limit results -->
-                <input class="form-control"
-                       ng-model="vm.searchTerm"
-                       id="searchFilter"
-                       placeholder="Enter search string"
-                       type="text"/>
-            </div>
-        </form>
+    <!--<div id="donutchart" style="width: 900px; height: 500px;"></div>-->
 
-        <!--the ouput table if data is found-->
-        <div class="table-responsive" ng-show="vm.tableVisibility">
-            <table class="table table-striped">
-                <tr>
-                    <thead>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='city'; reverse=!reverse">City</a></th>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='marketValue'; reverse=!reverse">Market Value</a></th>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='assessedValue'; reverse=!reverse">Assessed Value</a></th>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='improvement'; reverse=!reverse">Improvement</a>
-                    </th>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='hsTax'; reverse=!reverse">HSE Tax</a></th>
-                    <th><a href=""
-                           data-ng-click="vm.sortOrder='fullTax'; reverse=!reverse">Full Tax</a></th>
-                    </thead>
-                </tr>
-                <tr ng-repeat="house in vm.tableData | filter:vm.searchTerm | limitTo:20 | orderBy:vm.sortOrder:reverse">
-                    <td>{{house.name}}</td>
-                    <td>{{house.city}}</td>
-                    <td>{{house.marketValue | currency}}</td>
-                    <td>{{house.assessedValue | currency}}</td>
-                    <td>{{house.improvement | currency}}</td>
-                    <td>{{house.hsTax | currency}}</td>
-                    <td>{{house.fullTax | currency}}</td>
-                </tr>
-            </table>
+    <!--Search filter for range table-->
+    <form ng-show="vm.tableVisibility">
+        <div class="form-group">
+            <label for="searchFilter">Search Clients</label>
+            <!-- string is used to limit results -->
+            <input class="form-control"
+                   ng-model="vm.searchTerm"
+                   id="searchFilter"
+                   placeholder="Enter search string"
+                   type="text"/>
         </div>
+    </form>
+
+    <!--the ouput table if data is found-->
+    <div class="table-responsive" ng-show="vm.tableVisibility">
+        <table class="table table-striped">
+            <tr>
+                <thead>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='city'; reverse=!reverse">City</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='marketValue'; reverse=!reverse">Market Value</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='assessedValue'; reverse=!reverse">Assessed Value</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='improvement'; reverse=!reverse">Improvement</a>
+                </th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='hsTax'; reverse=!reverse">HSE Tax</a></th>
+                <th><a href=""
+                       data-ng-click="vm.sortOrder='fullTax'; reverse=!reverse">Full Tax</a></th>
+                </thead>
+            </tr>
+            <tr ng-repeat="house in vm.tableData | filter:vm.searchTerm | limitTo:20 | orderBy:vm.sortOrder:reverse">
+                <td>{{house.name}}</td>
+                <td>{{house.city}}</td>
+                <td>{{house.marketValue | currency}}</td>
+                <td>{{house.assessedValue | currency}}</td>
+                <td>{{house.improvement | currency}}</td>
+                <td>{{house.hsTax | currency}}</td>
+                <td>{{house.fullTax | currency}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
