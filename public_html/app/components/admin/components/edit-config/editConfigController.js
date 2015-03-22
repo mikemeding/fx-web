@@ -35,6 +35,10 @@
             vm.userData.textMissing = false;
             vm.userData.titleMissing = false;
 
+            //  Bug Fix, updates textarea element to allow for angular js to see it
+            CKEDITOR.instances.newsText.updateElement();
+            vm.userData.text = document.getElementById( "newsText" ).value ;
+
             console.log(vm.userData.title);
             if (vm.userData.title == undefined ||
                 vm.userData.title.trim() == "") {

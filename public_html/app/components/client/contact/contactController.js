@@ -43,6 +43,11 @@
          * @returns {boolean}
          */
         vm.validForm = function() {
+
+            //  Bug Fix, updates textarea element to allow for angular js to see it
+            CKEDITOR.instances.newsText.updateElement();
+            vm.contactEmail = document.getElementById( "contact-message" ).value ;
+
             if(vm.contactEmail === '' || vm.contactEmail === ''){
                 return false;
             } else {
