@@ -45,8 +45,8 @@
         vm.validForm = function() {
 
             //  Bug Fix, updates textarea element to allow for angular js to see it
-            CKEDITOR.instances.newsText.updateElement();
-            vm.contactEmail = document.getElementById( "contact-message" ).value ;
+            CKEDITOR.instances.contactMessage.updateElement();
+            vm.contactEmail = document.getElementById( "contactMessage" ).value ;
 
             if(vm.contactEmail === '' || vm.contactEmail === ''){
                 return false;
@@ -137,6 +137,7 @@
                     vm.successAlert = true;
                     vm.failureAlert = false;
                     vm.reset();
+                    CKEDITOR.instances.contactMessage.setData( '', function() { this.updateElement(); } )
                 })
                 .error(function (data, status, headers, config, response) { // If call fails
                     console.log("Login Failed");

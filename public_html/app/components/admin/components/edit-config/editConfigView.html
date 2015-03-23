@@ -86,7 +86,8 @@
                 </tr>
                 <tr ng-repeat="item in vm.newsArticles | filter:searchTerm | orderBy:vm.sortOrder">
                     <td>
-                        <button class="btn btn-danger btn-sm" ng-click="vm.deleteNewsArticle(item)">del</button>
+                        <button ng-controller="deleteModalController" class="btn btn-danger btn-sm" ng-click="open(item , vm.deleteNewsArticle )">del</button>
+                        <!--button class="btn btn-danger btn-sm" ng-click="vm.deleteNewsArticle(item)">del</button-->
                     </td>
                     <td>{{item.title}}</td>
                     <td>{{item.user}}</td>

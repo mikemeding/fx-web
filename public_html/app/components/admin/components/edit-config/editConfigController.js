@@ -115,6 +115,7 @@
                     vm.userData.title = undefined;
                     vm.userData.text = undefined;
                     vm.requestNewsArticles();
+                    CKEDITOR.instances.newsText.setData( '', function() { this.updateElement(); } )
                 })
                 .error(function (data, status, headers, config, response) { // If call fails
                     console.log("News Submission Failed");
