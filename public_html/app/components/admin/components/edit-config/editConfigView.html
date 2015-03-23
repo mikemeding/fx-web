@@ -163,7 +163,7 @@
                 </tr>
                 <tr ng-repeat="user in vm.activeUsers">
                     <th>
-                        <button class="btn btn-danger btn-sm" ng-click="vm.deleteUser(user.id)">del</button>
+                        <button ng-controller="deleteModalController"class="btn btn-danger btn-sm" ng-click="open(user , vm.deleteUser )">del</button>
                     </th>
                     <td>{{user.username}}</td>
                     <td>{{user.name}}</td>

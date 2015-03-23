@@ -7,7 +7,7 @@
  Michael Meding & Jose Flores
  2015-02-12
 
- This is the controller for the login form. It handles both the collection
+ This is the controller for the edit form. It handles both the collection
  and submission of collected username and password to the backend server
  ==========================================================================
  */
@@ -15,15 +15,13 @@
     "use strict";
 
     var app = angular.module('fxClient')
-        .controller('deleteModalController',
+        .controller('editModalController',
         ['$scope', '$modal', '$cookieStore', '$state', function ($scope, $modal, $cookieStore, $state) {
 
-            $scope.userData = {};
-            $scope.callback = {};
-            $scope.label = "" ;
+            $scope.userData = {} ;
+            $scope.callback = {} ;
 
-            /**
-             * Opens the main page login modal
+            /*
              * Based on the code from:
              * http://angular-ui.github.io/bootstrap/#/modal
              */
@@ -34,31 +32,12 @@
                 $scope.userData = item ;
                 $scope.callback = callback ;
 
-                $scope.label = "<table><tbody>" ;
-
-                Object.getOwnPropertyNames( item ).forEach( function( val, idx, array ) {
-                    console.log( item[ val ] );
-                    if ( val != "created" &&
-                         val != "id" &&
-                         val != "password" &&
-                         val != "$$hashKey" ) {
-                        $scope.label += "<tr><td>" + item[ val ] + '</td></tr>' ;
-                    }
-                });
-
-                $scope.label += "</tbody></table>" ;
-
-                console.log( $scope.label ) ;
-
                 return  $modal.open({
-                    templateUrl: 'app/components/modals/delete/deleteModalTemplate.html',
-                    controller: 'deleteModalInstanceCtrl',
+                    templateUrl: 'app/components/modals/edit/editModalTemplate.html',
+                    controller: 'editModalInstanceCtrl',
                     resolve: { // this resolves the local vars of Instance Ctrl
                             userData: function () {
                                 return $scope.userData;
-                            },
-                            label: function() {
-                                return $scope.label;
                             },
                             callback: function () {
                                 return $scope.callback ;
@@ -74,7 +53,6 @@
             $scope.reset = function () {
                 this.userData = {};
                 this.callback = {};
-                $scope.label = "" ;
             };
 
         }]);
@@ -82,11 +60,10 @@
     /**
      * The per instance modal controller. This handles the actual submission of the data
      */
-    app.controller("deleteModalInstanceCtrl", ['$scope', '$sce' , '$modalInstance', 'userData', 'label' , 'callback' , '$http', '$state', '$cookieStore', function ($scope, $sce , $modalInstance, userData, label , callback , $http, $state, $cookieStore  ) {
+    app.controller("editModalInstanceCtrl", ['$scope', '$modalInstance', 'userData', 'callback' , '$http', '$state', '$cookieStore', function ($scope, $modalInstance, userData, callback , $http, $state, $cookieStore  ) {
 
         $scope.userData = userData;
         $scope.callback = callback ;
-        $scope.label = $sce.trustAsHtml( label ) ;
 
         $scope.ok = function () {
             console.log( 'ok' );

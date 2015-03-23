@@ -46,7 +46,7 @@
 
             //  Bug Fix, updates textarea element to allow for angular js to see it
             CKEDITOR.instances.contactMessage.updateElement();
-            vm.contactEmail = document.getElementById( "contactMessage" ).value ;
+            vm.contactMessage = document.getElementById( "contactMessage" ).value ;
 
             if(vm.contactEmail === '' || vm.contactEmail === ''){
                 return false;
