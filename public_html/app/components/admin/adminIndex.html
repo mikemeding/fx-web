@@ -11,18 +11,18 @@
 -->
 
 <!--put a nice left hand navigation here-->
-<script type="text/javascript" src="app/components/admin/adminApp.js"></script>
+<script type="text/javascript" ng-src="app/components/admin/adminApp.js"></script>
 
-<div class="row" ng-app="fxAdmin">
+<div class="row" ng-app="fxAdmin" >
     <div class="col-lg-2">
         <div class="panel panel-primary">
             <div class="panel-heading">Admin Controls</div>
-            <div class="panel-body">
+            <div class="panel-body row">
                 <ul class="nav nav-pills nav-stacked">
-                    <li role="presentation"><button class="btn btn-default" ui-sref="admin.clients">Clients</button></li>
-                    <li role="presentation"><button class="btn btn-default" ui-sref="admin.find-clients">Find new clients</button></li>
-                    <li role="presentation"><button class="btn btn-default" ui-sref="admin.edit-config">Edit Site</button></li>
-                    <li role="presentation"><button class="btn btn-default" ui-sref="home" data-ng-click="vm.logout()">Logout</button></li>
+                    <li role="presentation"><a ui-sref="admin.clients">Clients</a></li>
+                    <li role="presentation"><a ui-sref="admin.find-clients">Find new clients</a></li>
+                    <li role="presentation"><a ui-sref="admin.edit-config">Edit Site</a></li>
+                    <li role="presentation"><a ui-sref="home" data-ng-click="vm.logout()">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -32,5 +32,3 @@
         <div ui-view></div>
     </div>
 </div>
-
-<!--view insertion-->

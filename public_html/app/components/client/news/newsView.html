@@ -12,17 +12,18 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
     <div class="container">
-        <h1>{{ vm.title }}</h1>
+        <h1 class="slideInDown animated">{{ vm.title }}</h1>
 
-        <p>{{ vm.message }}</p>
+        <p class="slideInDown animated">{{ vm.message }}</p>
 
         <div class="col-md-8 col-xs-12">
             <div ng-show="vm.alert" class="alert alert-danger" role="alert">Could not get news from database</div>
             <div ng-repeat="item in vm.newsArticles | orderBy:sortOrder">
-                <h2 class='blog'>{{item.title}}</h2>
-                <h4>by, {{item.user}}</h4>
+                <h2 class='blog slideInLeft animated'>{{item.title}}</h2>
+                <h4 class="slideInLeft animated">by, {{item.user}}</h4>
 
-                <p>{{item.text}}</p>
+                <!--<p>{{item.text}}</p>-->
+                <div class="slideInRight animated" ng-bind-html='item.text'></div>
             </div>
         </div>
 
