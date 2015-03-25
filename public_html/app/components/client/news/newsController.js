@@ -40,7 +40,7 @@
                 console.log('data: ' + data[0].text);
                 vm.alert = false;
                 // trust text section of data as html for ckeditor
-                for(var x = 0; x < data.length; x++){
+                for (var x = 0; x < data.length; x++) {
                     console.log(data[x].text);
                     console.log(data[x]);
                     data[x].text = $sce.trustAsHtml(data[x].text);
@@ -54,5 +54,7 @@
                 vm.alert = true;
             });
 
+        // this fixes the twitter embed loading issue.
+        twttr.widgets.load()
     }
 }());

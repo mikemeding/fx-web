@@ -32,49 +32,30 @@
 
                     <form name="contact-form" novalidate>
 
-                        <div class="alert alert-success" role="alert" ng-show="vm.successAlert">Submitted
-                            successfully.
-                        </div>
-                        <div class="alert alert-danger" role="alert" ng-show="vm.failureAlert">Failure. Please double
-                            check the fields below for accuracy.
-                        </div>
+                        <!--Alerts-->
+                        <div class="alert alert-success" role="alert" ng-show="vm.successAlert">{{vm.successAlertMessage}}</div>
+                        <div class="alert alert-danger" role="alert" ng-show="vm.failureAlert">{{vm.failureAlertMessage}}</div>
 
+                        <!--Name-->
                         <div class="form-group">
-                            <div class="alert alert-danger" role="alert" ng-show="vm.nameMissing">Name is required.
-                            </div>
                             <label for="contact-name">Your Full Name</label>
-                            <input class="form-control"
-                                   id="contact-name"
-                                   name="contact-name"
-                                   ng-model="vm.contactName"
-                                   placeholder="Enter your name"
-                                   type="text"/>
+                            <input class="form-control" id="contact-name" name="contact-name" ng-model="vm.contactName" placeholder="Enter your name" type="text"/>
                         </div>
-
+                        <!--Email-->
                         <div class="form-group">
-                            <div class="alert alert-danger" role="alert" ng-show="vm.emailMissing">Email address is
-                                required.
-                            </div>
-                            <div class="alert alert-danger" role="alert" ng-show="vm.emailInvalid">Email address is
-                                invalid.
-                            </div>
-
                             <label for="contact-email">Your Email (username@domain.com)</label>
-                            <input class="form-control" id="contact-email" name="contact-email"
-                                   ng-model="vm.contactEmail"
-                                   placeholder="Enter your email address" type="email" required/>
+                            <input class="form-control" id="contact-email" name="contact-email" ng-model="vm.contactEmail" placeholder="Enter your email address" type="email"
+                                   required/>
                         </div>
-
-
+                        <!--Message-->
                         <div class="form-group">
                             <label for="contactMessage">Your Message (optional)</label>
-                            <textarea class="form-control" id="contactMessage" name="contactMessage"
-                                      ng-model="vm.contactMessage"
-                                      placeholder="Enter your message"></textarea>
-
+                            <textarea class="form-control" id="contactMessage" name="contactMessage" ng-model="vm.contactMessage"
+                                      placeholder="Enter your optional message"></textarea>
                         </div>
 
-                        <a class="col-md-2 col-xs-6 btn btn-lg btn-primary" type="submit" data-ng-click="vm.submitContact()">Submit</a>
+                        <a class="col-md-2 col-xs-6 btn btn-lg btn-primary" type="submit"
+                           data-ng-click="vm.submitContact()">Submit</a>
 
                     </form>
 
