@@ -82,39 +82,20 @@
     /**
      * The per instance modal controller. This handles the actual submission of the data
      */
-    app.controller("deleteModalInstanceCtrl", ['$scope', '$modalInstance', function ($scope, $modalInstance) {
+    app.controller("deleteModalInstanceCtrl", ['$scope', '$modalInstance', 'callback', function ($scope, $modalInstance, callback) {
 
-
-        //$scope.userData = userData;
-        //$scope.callback = callback ;
-        //$scope.label = $sce.trustAsHtml( label ) ;
-        //
-        //$scope.ok = function () {
-        //    console.log( 'ok' );
-        //    console.log( $scope.userData ) ;
-        //    $modalInstance.dismiss( 'Ok' ) ;
-        //    $scope.callback( $scope.userData ) ;
-        //    return true ;
-        //};
-        //
-        //$scope.cancel = function () {
-        //    console.log( 'cancel' );
-        //    $modalInstance.dismiss('cancel');
-        //    return false ;
-        //};
-
-        //console.log(deleteReturn);
-        //$scope.returnValue = deleteReturn;
         $scope.yes = function () {
-            console.log("yes pressed");
+            //console.log("yes pressed");
             $modalInstance.dismiss('cancel');
-            return true;
+            callback(true);
+            return;
 
         }
         $scope.no = function () {
-            console.log("no pressed");
+            //console.log("no pressed");
             $modalInstance.dismiss('cancel');
-            return false;
+            callback(false);
+            return;
         }
 
     }]);
