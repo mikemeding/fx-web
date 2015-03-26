@@ -11,38 +11,21 @@
      confirmation of a delete action.
     ==========================================================================
 -->
-
 <div class="modal-header">
 
-    <h3 class="modal-title">Delete</h3>
+    <h3 class="modal-title">Delete?</h3>
 
 </div>
 
 <div class="modal-body">
 
-    <form   novalidate
-            ng-submit="ok()"
-            class="register-form">
 
-        <div class="form-group">
+    <label class="label label-danger"> Are you sure you want to delete this item?</label>
 
-            <label ng-bind-html="label"></label>
+    <div class="row">
+        <button class="btn btn-default" ng-click="yes()">yes</button>
+        <button class="btn btn-default" ng-click="no()">no</button>
+    </div>
 
-        </div>
-
-
-    </form>
-
-</div>
-
-<div class="modal-footer">
-
-    <button class="btn
-                   btn-primary"
-            ng-click="ok()">OK</button>
-
-    <button class="btn
-                   btn-default"
-            ng-click="cancel()">Cancel</button>
 
 </div>

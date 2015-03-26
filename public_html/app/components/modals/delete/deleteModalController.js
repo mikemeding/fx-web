@@ -20,50 +20,50 @@
 
             $scope.userData = {};
             $scope.callback = {};
-            $scope.label = "" ;
+            $scope.label = "";
 
             /**
              * Opens the main page login modal
              * Based on the code from:
              * http://angular-ui.github.io/bootstrap/#/modal
              */
-            $scope.open = function ( item , callback ) {
+            $scope.open = function (item, callback) {
 
                 this.reset();
 
-                $scope.userData = item ;
-                $scope.callback = callback ;
+                $scope.userData = item;
+                $scope.callback = callback;
 
-                $scope.label = "<table><tbody>" ;
+                $scope.label = "<table><tbody>";
 
-                Object.getOwnPropertyNames( item ).forEach( function( val, idx, array ) {
-                    console.log( item[ val ] );
-                    if ( val != "created" &&
-                         val != "id" &&
-                         val != "password" &&
-                         val != "$$hashKey" ) {
-                        $scope.label += "<tr><td>" + item[ val ] + '</td></tr>' ;
+                Object.getOwnPropertyNames(item).forEach(function (val, idx, array) {
+                    console.log(item[val]);
+                    if (val != "created" &&
+                        val != "id" &&
+                        val != "password" &&
+                        val != "$$hashKey") {
+                        $scope.label += "<tr><td>" + item[val] + '</td></tr>';
                     }
                 });
 
-                $scope.label += "</tbody></table>" ;
+                $scope.label += "</tbody></table>";
 
-                console.log( $scope.label ) ;
+                console.log($scope.label);
 
-                return  $modal.open({
+                return $modal.open({
                     templateUrl: 'app/components/modals/delete/deleteModalTemplate.html',
                     controller: 'deleteModalInstanceCtrl',
                     resolve: { // this resolves the local vars of Instance Ctrl
-                            userData: function () {
-                                return $scope.userData;
-                            },
-                            label: function() {
-                                return $scope.label;
-                            },
-                            callback: function () {
-                                return $scope.callback ;
-                            }
+                        userData: function () {
+                            return $scope.userData;
+                        },
+                        label: function () {
+                            return $scope.label;
+                        },
+                        callback: function () {
+                            return $scope.callback;
                         }
+                    }
                 });
 
             };
@@ -74,7 +74,7 @@
             $scope.reset = function () {
                 this.userData = {};
                 this.callback = {};
-                $scope.label = "" ;
+                $scope.label = "";
             };
 
         }]);
@@ -82,25 +82,41 @@
     /**
      * The per instance modal controller. This handles the actual submission of the data
      */
-    app.controller("deleteModalInstanceCtrl", ['$scope', '$sce' , '$modalInstance', 'userData', 'label' , 'callback' , '$http', '$state', '$cookieStore', function ($scope, $sce , $modalInstance, userData, label , callback , $http, $state, $cookieStore  ) {
+    app.controller("deleteModalInstanceCtrl", ['$scope', '$modalInstance', function ($scope, $modalInstance) {
 
-        $scope.userData = userData;
-        $scope.callback = callback ;
-        $scope.label = $sce.trustAsHtml( label ) ;
 
-        $scope.ok = function () {
-            console.log( 'ok' );
-            console.log( $scope.userData ) ;
-            $modalInstance.dismiss( 'Ok' ) ;
-            $scope.callback( $scope.userData ) ;
-            return true ;
-        };
+        //$scope.userData = userData;
+        //$scope.callback = callback ;
+        //$scope.label = $sce.trustAsHtml( label ) ;
+        //
+        //$scope.ok = function () {
+        //    console.log( 'ok' );
+        //    console.log( $scope.userData ) ;
+        //    $modalInstance.dismiss( 'Ok' ) ;
+        //    $scope.callback( $scope.userData ) ;
+        //    return true ;
+        //};
+        //
+        //$scope.cancel = function () {
+        //    console.log( 'cancel' );
+        //    $modalInstance.dismiss('cancel');
+        //    return false ;
+        //};
 
-        $scope.cancel = function () {
-            console.log( 'cancel' );
+        //console.log(deleteReturn);
+        //$scope.returnValue = deleteReturn;
+        $scope.yes = function () {
+            console.log("yes pressed");
             $modalInstance.dismiss('cancel');
-            return false ;
-        };
+            return true;
+
+        }
+        $scope.no = function () {
+            console.log("no pressed");
+            $modalInstance.dismiss('cancel');
+            return false;
+        }
+
     }]);
 
 

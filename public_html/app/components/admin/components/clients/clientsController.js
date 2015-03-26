@@ -15,9 +15,9 @@
     angular
         .module("fxClient")
         .controller("ClientsController",
-        ["$http", "$scope" ,ClientsController]);
+        ["$http", "$scope","$modal", ClientsController]);
 
-    function ClientsController($http, $scope  ) {
+    function ClientsController($http, $scope, $modal) {
         var vm = this;
 
         vm.title = 'Clients Page';
@@ -26,12 +26,21 @@
         vm.message = 'A nice clients table goes here';
         vm.alert = false;
         vm.userData = {};
+        vm.deleteReturn = false;
 
         /**
          * Delete a given client from the database
          * @param client
          */
-        vm.deleteClient = function(client){
+        vm.deleteClient = function (client) {
+
+
+          vm.somethingReturn =  $modal.open({
+                templateUrl: 'app/components/modals/delete/deleteModalTemplate.html',
+                controller: 'deleteModalInstanceCtrl'
+                });
+            console.log(vm.somethingReturn);
+
             console.log("removing client with ID:" + client);
 
             var request = {
@@ -82,19 +91,19 @@
          *
          *  @param  obj     the row item being tested
          */
-        vm.searchFilter = function( obj ) {
-            var re ;    //  Holds the regular expression to search with
+        vm.searchFilter = function (obj) {
+            var re;    //  Holds the regular expression to search with
 
             //Initialization
-            re = new RegExp( vm.query , 'i' ) ; // a regular expression
+            re = new RegExp(vm.query, 'i'); // a regular expression
 
             //  Returning true only when found in the object columns
             //  and there was something to search for
-            return  !vm.query ||
-                    re.test( obj.name ) ||
-                    re.test( obj.email ) ||
-                    re.test( obj.message ) ||
-                    re.test( obj.refundAmount ) ;
+            return !vm.query ||
+                re.test(obj.name) ||
+                re.test(obj.email) ||
+                re.test(obj.message) ||
+                re.test(obj.refundAmount);
         }
 
     }
