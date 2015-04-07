@@ -15,13 +15,14 @@
     angular
         .module("fxClient")
         .controller("FindClientsController",
-        ["$scope", "$http", FindClientsController]);
+        ["$scope", "$http", FindClientsController])
+        .controller("GoogleChartController",
+        ["$scope", GoogleChartController]);
 
     function FindClientsController($scope, $http) {
         var $scope = this;
 
         $scope.title = 'Find Clients';
-
 
         //getAppraisalDataInAssessedRange/{taxYear}/{fromValue}/{toValue}
         $scope.years = ["2013", "2014"]; // currently available tax years
@@ -67,29 +68,22 @@
                 });
         }
 
-        /**
-         * Testing some charting stuff
-         */
-        //google.load("visualization", "1", {packages:["corechart"]});
-        //google.setOnLoadCallback(drawChart);
-        //function drawChart() {
-        //    var data = google.visualization.arrayToDataTable([
-        //        ['Task', 'Hours per Day'],
-        //        ['Work',     11],
-        //        ['Eat',      2],
-        //        ['Commute',  2],
-        //        ['Watch TV', 2],
-        //        ['Sleep',    7]
-        //    ]);
-        //
-        //    var options = {
-        //        title: 'My Daily Activities',
-        //        pieHole: 0.4,
-        //    };
-        //
-        //    var chart = new google.visualization.PieChart($('donutchart'));
-        //    chart.draw(data, options);
-        //}
+    }
+
+    /**
+     * Testing some charting stuff
+     */
+
+    function GoogleChartController($scope) {
+
+        $scope.data1 = {};
+        $scope.data1.dataTable = new google.visualization.DataTable();
+        $scope.data1.dataTable.addColumn("string", "Name")
+        $scope.data1.dataTable.addColumn("number", "Qty")
+        $scope.data1.dataTable.addRow(["Test", 1]);
+        $scope.data1.dataTable.addRow(["Test2", 2]);
+        $scope.data1.dataTable.addRow(["Test3", 3]);
+        $scope.data1.title = "My Pie"
 
     }
 }());

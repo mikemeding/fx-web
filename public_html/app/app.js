@@ -16,7 +16,17 @@
 (function () { // this is to protect global namespace
     "use-strict"; // for strict syntax checking
 
-    var fxClient = angular.module('fxClient', ['ui.bootstrap', 'ui.router','ngCookies']);
+
+    /*We need to manually start angular as we need to
+     wait for the google charting libs to be ready*/
+    google.setOnLoadCallback(function () {
+        angular.bootstrap(document.body, ['fxClient']);
+    });
+    google.load('visualization', '1', {packages: ['corechart']});
+
+
+    //Define our application (bringing in libs and such)
+    var fxClient = angular.module('fxClient', ['ui.bootstrap', 'ui.router', 'ngCookies','google-chart']);
     //Angular routing config
     fxClient.config(["$stateProvider",
         "$urlRouterProvider",
@@ -61,7 +71,7 @@
                     //abstract: true,
                     url: '/admin',
                     templateUrl: "app/components/admin/adminIndex.html",
-                    controller:"AdminController as vm"
+                    controller: "AdminController as vm"
                 })
                 .state('admin.clients', {
                     url: '/clients',

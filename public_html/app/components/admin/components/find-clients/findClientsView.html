@@ -53,7 +53,11 @@
         </div>
     </div>
 
-    <!--<div id="donutchart" style="width: 900px; height: 500px;"></div>-->
+    <div ng-controller="GoogleChartController">
+        <>
+        <!--Google pie chart DOM hook-->
+        <div google-chart="PieChart" ng-model="data1" class="bigGraph"></div>
+    </div>
 
     <!--Search filter for range table-->
     <form ng-show="vm.tableVisibility">

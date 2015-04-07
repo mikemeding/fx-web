@@ -100,6 +100,7 @@
 
             // gets the currently logged in user from the cookie
             vm.userData.user = $cookieStore.get('user');
+            console.log(vm.userData);
 
             var request = {
                 method: 'POST',
