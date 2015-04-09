@@ -3,7 +3,7 @@
 
      Graphical User Interface Programming II
      Professor Jessie Heines
-     Michael Meding & Jose Flores
+     Michael Meding
      2015-02-12
 
     Custom Global Styles
@@ -30,29 +30,6 @@ h3.h3-brand {
 div.post {
     background: #fff;
 }
-
-div.twitter, div.rss {
-    margin: 20px 0;
-
-}
-
-h3.twitter, h3.rss {
-    font-size: 20px;
-    margin: 0px;
-}
-
-h4.twitter-date,
-h4.rss-date {
-    font-size: 12px;
-    margin: 0px;
-}
-
-/*p.twitter,*/
-/*p.rss {*/
-    /*font-size: 20px;*/
-    /*margin: 0 0 10px 0;*/
-/*}*/
-
 
 textarea {
     resize: none;

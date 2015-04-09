@@ -4,7 +4,7 @@
 
  Graphical User Interface Programming II
  Professor Jessie Heines
- Michael Meding & Jose Flores
+ Michael Meding
  2015-02-12
 
  ========================================================================== 
@@ -15,11 +15,11 @@
     angular
         .module("fxClient")
         .controller("FindClientsController",
-        ["$scope", "$http", FindClientsController])
+        ["$scope", "$http", "$modal", FindClientsController])
         .controller("GoogleChartController",
-        ["$scope", GoogleChartController]);
+        ["$scope", "$modalInstance", "$http", "propertyInfo", GoogleChartController]);
 
-    function FindClientsController($scope, $http) {
+    function FindClientsController($scope, $http, $modal) {
         var $scope = this;
 
         $scope.title = 'Find Clients';
@@ -68,13 +68,46 @@
                 });
         }
 
+        $scope.propertyInfo = {};
+        $scope.openDetailedView = function (data) {
+            //console.log(data);
+            $scope.propertyInfo = data;
+            var modalInstance = $modal.open({
+                templateUrl: 'app/components/admin/components/find-clients/findClientsTaxBreakdownModal.html',
+                controller: 'GoogleChartController',
+                size: 'lg',
+                resolve: { // this resolves the local vars of Instance Ctrl
+                    propertyInfo: function () {
+                        return $scope.propertyInfo;
+                    }
+                }
+            });
+        }
+
     }
 
     /**
      * Testing some charting stuff
      */
+    function GoogleChartController($scope, $modalInstance, $http, propertyInfo) {
+        console.log(propertyInfo);
+        var request = {
+            method: 'GET',
+            url: 'http://www.mikemeding.com/fx/appraisal/getTaxBreakdown/'+propertyInfo.taxYear+'/'+propertyInfo.pid+'/full'
+        };
+        $http(request)
+            .success(function (data, status, headers, config, response) { // If call successful
+                console.log("Get data successful");
+                console.log("data: " + JSON.stringify(data));
+            })
+            .error(function (data, status, headers, config, response) { // If call fails
+                console.log("Failed to get data");
+                console.log('response: ' + response); // response will contain reason why
+            });
 
-    function GoogleChartController($scope) {
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
 
         $scope.data1 = {};
         $scope.data1.dataTable = new google.visualization.DataTable();
@@ -82,7 +115,7 @@
         $scope.data1.dataTable.addColumn("number", "Qty")
         $scope.data1.dataTable.addRow(["Test", 1]);
         $scope.data1.dataTable.addRow(["Test2", 2]);
-        $scope.data1.dataTable.addRow(["Test3", 3]);
+        $scope.data1.dataTable.addRow(["Test3", 8]);
         $scope.data1.title = "My Pie"
 
     }

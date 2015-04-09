@@ -24,10 +24,8 @@
                     <div>
                         <!--TODO: this is messy-->
                         <button type="button" id="year" class="dropdown btn btn-sm btn-default" dropdown
-                                on-toggle="toggled(open)">
-                            <h5 href class="dropdown-toggle" dropdown-toggle>
-                                {{vm.selectedYear}} <span class="caret"></span>
-                            </h5>
+                                on-toggle="toggled(open)" dropdown-toggle>
+                            <h5>{{vm.selectedYear}} <span class="caret"></span></h5>
                             <ul class="dropdown-menu">
                                 <li ng-repeat="choice in vm.years">
                                     <a ng-click="vm.yearToggle(choice)">{{choice}}</a>
@@ -53,11 +51,10 @@
         </div>
     </div>
 
-    <div ng-controller="GoogleChartController">
-        <>
-        <!--Google pie chart DOM hook-->
-        <div google-chart="PieChart" ng-model="data1" class="bigGraph"></div>
-    </div>
+    <!--<div ng-controller="GoogleChartController">-->
+    <!--&lt;!&ndash;Google pie chart DOM hook&ndash;&gt;-->
+    <!--<div google-chart="PieChart" ng-model="data1" class="bigGraph"></div>-->
+    <!--</div>-->
 
     <!--Search filter for range table-->
     <form ng-show="vm.tableVisibility">
@@ -73,7 +70,7 @@
     </form>
 
     <!--the ouput table if data is found-->
-    <div class="table-responsive" ng-show="vm.tableVisibility">
+    <div class="table table-responsive table-hover" ng-show="vm.tableVisibility">
         <table class="table table-striped">
             <tr>
                 <thead>
@@ -94,7 +91,7 @@
                        data-ng-click="vm.sortOrder='fullTax'; reverse=!reverse">Full Tax</a></th>
                 </thead>
             </tr>
-            <tr ng-repeat="house in vm.tableData | filter:vm.searchTerm | limitTo:20 | orderBy:vm.sortOrder:reverse">
+            <tr ng-click="vm.openDetailedView(house)" ng-repeat="house in vm.tableData | filter:vm.searchTerm | limitTo:20 | orderBy:vm.sortOrder:reverse">
                 <td>{{house.name}}</td>
                 <td>{{house.city}}</td>
                 <td>{{house.marketValue | currency}}</td>

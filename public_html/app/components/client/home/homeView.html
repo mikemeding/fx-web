@@ -4,7 +4,7 @@
 
      Graphical User Interface Programming II
      Professor Jessie Heines
-     Michael Meding & Jose Flores
+     Michael Meding
      2015-02-12
 
     ==========================================================================
@@ -17,31 +17,13 @@
         </div>
 
         <div class="row">
-            <p  class = "col-md-6
-                         col-xs-12">{{ vm.message }}
+            <p>{{ vm.message }}
 
-                <span class = "col-md-12
-                               col-xs-12"
-                      style = "text-align:center;
-                               padding: 30px 0;">
+                <span class="col-md-12 col-xs-12" style="text-align:center; padding: 30px 0;">
 
-                    <a class = "col-md-12
-                                col-xs-12
-                                btn
-                                btn-primary
-                                btn-lg"
-                        href = "#"
-                        ng-click = "vm.gotoRefund()"
-                        role = "button"> Get your refund &raquo;</a>
+                    <a class="col-md-12 col-xs-12 btn btn-primary btn-lg" href="#" ng-click="vm.gotoRefund()" role="button"> Get your refund &raquo;</a>
 
                 </span>
-
-            </p>
-
-            <p>
-                    <img    class = "col-md-6
-                                     hidden-xs"
-                            src="{{ vm.image }}" />
             </p>
 
         </div>
