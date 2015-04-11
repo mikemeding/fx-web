@@ -12,6 +12,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron fadeIn animated">
     <h1>{{ vm.title }}</h1>
+    <h3>{{vm.message}}</h3>
 
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -91,7 +92,7 @@
                     </td>
                     <td>{{item.title}}</td>
                     <td>{{item.user}}</td>
-                    <td>{{item.text}}</td>
+                    <td>{{item.text | limitTo:150}}</td>
                 </tr>
             </table>
 
@@ -123,56 +124,56 @@
         <!--</div>-->
     <!--</div>-->
 
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            Current FundsXpert Users
-        </div>
-        <div class="panel-body">
-            <div class="alert alert-danger" role="alert" ng-show="vm.userTableAlert">{{vm.userTableAlertMessage}}</div>
+    <!--<div class="panel panel-primary">-->
+        <!--<div class="panel-heading">-->
+            <!--Current FundsXpert Users-->
+        <!--</div>-->
+        <!--<div class="panel-body">-->
+            <!--<div class="alert alert-danger" role="alert" ng-show="vm.userTableAlert">{{vm.userTableAlertMessage}}</div>-->
 
-            <!--<h4>Pending Approval</h4>-->
+            <!--&lt;!&ndash;<h4>Pending Approval</h4>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;<table class="table">&ndash;&gt;-->
+                <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<thead>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th></th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th>blah</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th>blah</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<th>blah</th>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</thead>&ndash;&gt;-->
+                <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>item</td>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>item</td>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>item</td>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>item</td>&ndash;&gt;-->
+                <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;</table>&ndash;&gt;-->
+
+            <!--<h4>Current Users</h4>-->
 
             <!--<table class="table">-->
                 <!--<tr>-->
                     <!--<thead>-->
                     <!--<th></th>-->
-                    <!--<th>blah</th>-->
-                    <!--<th>blah</th>-->
-                    <!--<th>blah</th>-->
+                    <!--<th>Username</th>-->
+                    <!--<th>Display Name</th>-->
+                    <!--<th>Password</th>-->
+                    <!--<th>Email</th>-->
                     <!--</thead>-->
                 <!--</tr>-->
-                <!--<tr>-->
-                    <!--<td>item</td>-->
-                    <!--<td>item</td>-->
-                    <!--<td>item</td>-->
-                    <!--<td>item</td>-->
+                <!--<tr ng-repeat="user in vm.activeUsers">-->
+                    <!--<th>-->
+                        <!--<button ng-controller="deleteModalController"class="btn btn-danger btn-sm" ng-click="open(user , vm.deleteUser )">del</button>-->
+                    <!--</th>-->
+                    <!--<td>{{user.username}}</td>-->
+                    <!--<td>{{user.name}}</td>-->
+                    <!--<td>******</td>-->
+                    <!--<td>{{user.email}}</td>-->
                 <!--</tr>-->
             <!--</table>-->
 
-            <h4>Current Users</h4>
-
-            <table class="table">
-                <tr>
-                    <thead>
-                    <th></th>
-                    <th>Username</th>
-                    <th>Display Name</th>
-                    <th>Password</th>
-                    <th>Email</th>
-                    </thead>
-                </tr>
-                <tr ng-repeat="user in vm.activeUsers">
-                    <th>
-                        <button ng-controller="deleteModalController"class="btn btn-danger btn-sm" ng-click="open(user , vm.deleteUser )">del</button>
-                    </th>
-                    <td>{{user.username}}</td>
-                    <td>{{user.name}}</td>
-                    <td>******</td>
-                    <td>{{user.email}}</td>
-                </tr>
-            </table>
-
-            </form>
-        </div>
-    </div>
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
 </div>
