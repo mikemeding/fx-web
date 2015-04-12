@@ -15,20 +15,26 @@
     angular
         .module("fxClient")
         .controller("RefundController",
-        ['$state' , RefundController]);
+        ['$scope', '$state', RefundController]);
 
-    function RefundController( $state ) {
-        var vm = this;
-        vm.title = 'Apply For Refund';
+    function RefundController($scope, $state) {
+
+        $scope.title = 'Apply For A Refund';
 
         // create a message to display in our view
-        vm.message = 'Someone wants their money back';
+        $scope.message = 'Find out if you qualify for a state tax return';
 
-        // no. just no. why would you do this and not tell me?
-        //vm.gotoReport = function () {
-        //    $state.go('report' );
-        //}
 
+        $scope.alertView = false;
+        $scope.alertMessage = "";
+        $scope.showAlert = function (refundName) {
+            $scope.alertView = true;
+            $scope.alertMessage = refundName + " QUALIFIES! Click the button below to fill in your information so we can get in contact with you";
+        }
+
+        $scope.goToContact = function(){
+            $state.go("contact");
+        }
 
     }
 }());

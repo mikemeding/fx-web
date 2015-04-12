@@ -4,6 +4,10 @@
     "answer": "You are in the process of losing hundreds or even thousands of dollars. I want to help you recover your money before you lose it."
   },
   {
+    "question": "Where is my money coming from?",
+    "answer": "Click on (link) to find out. You will find that your money is coming from a public agency in the state of Texas."
+  },
+  {
     "question": "Can I find this money myself?",
     "answer": "Maybe so, but you haven't thus far. Time can be more precious than money. Why would you want to risk losing all of your money when I can help you almost immediately apply for your refund with little effort on your part?"
   },
@@ -30,5 +34,9 @@
   {
     "question": "Is this a sweepstakes, time-share, home equity, rewards program or any other similar program?",
     "answer": "No. This is a very real and very straight deal. Simply stated: I believe you are about to lose several hundred or more dollars and I will help you retrieve it for a fee."
+  },
+  {
+    "question": "What do I do now?",
+    "answer": "Click on (link) to start the refund process."
   }
 ]

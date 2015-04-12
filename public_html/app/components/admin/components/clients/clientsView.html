@@ -12,8 +12,8 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron fadeIn animated">
 
-        <!--<h1>{{ vm.title }}</h1>-->
-    <h1>{{ vm.deleteReturn }}</h1>
+        <h1>{{ vm.title }}</h1>
+    <h3>{{vm.message}}</h3>
 
         <form>
             <div class="form-group">
@@ -38,7 +38,7 @@
                 <thead>
                 <!-- table columns allow for sorting -->
                 <th></th>
-                <th></th>
+                <!--<th></th>-->
                 <th><a href=""
                        data-ng-click="vm.sortOrder='name'; reverse=!reverse">Name</a></th>
 
@@ -56,7 +56,7 @@
             <!-- Added filter and sorting capabilities -->
             <tr ng-repeat="client in vm.userData | filter:vm.searchFilter | orderBy:vm.sortOrder:reverse">
                 <td><button ng-controller="deleteModalController" class="btn btn-danger btn-sm" ng-click="vm.deleteClient(client)">del</button></td>
-                <td><button ng-controller="editModalController" class="btn btn-danger btn-sm" ng-click="open( client , vm.editClient )">edit</button></td>
+                <!--<td><button ng-controller="editModalController" class="btn btn-danger btn-sm" ng-click="open( client , vm.editClient )">edit</button></td>-->
 
                 <td>{{client.name}}</td>
 

@@ -12,6 +12,7 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron fadeIn animated">
     <h1>{{ vm.title }}</h1>
+    <h3>{{vm.message}}</h3>
 
     <div class="panel panel-primary">
         <div class="panel-heading"> Search by market value range</div>
@@ -55,11 +56,6 @@
         </div>
     </div>
 
-    <!--<div ng-controller="GoogleChartController">-->
-    <!--&lt;!&ndash;Google pie chart DOM hook&ndash;&gt;-->
-    <!--<div google-chart="PieChart" ng-model="data1" class="bigGraph"></div>-->
-    <!--</div>-->
-
     <!--Search filter for range table-->
     <form ng-show="vm.tableVisibility">
         <div class="form-group">
@@ -74,8 +70,8 @@
     </form>
 
     <!--the ouput table if data is found-->
-    <div class="table table-responsive table-hover" ng-show="vm.tableVisibility">
-        <table class="table table-striped">
+    <div class="table table-responsive" ng-show="vm.tableVisibility">
+        <table class="table table-striped table-hover">
             <tr>
                 <thead>
                 <th><a href=""

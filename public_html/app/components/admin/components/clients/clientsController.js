@@ -23,7 +23,7 @@
         vm.title = 'Clients Page';
 
         // create a message to display in our view
-        vm.message = 'A nice clients table goes here';
+        vm.message = 'This is a table of all the users who have filled out a contact form and who wish to be emailed about a possible refund';
         vm.alert = false;
         vm.userData = {};
 

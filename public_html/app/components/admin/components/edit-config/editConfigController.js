@@ -20,6 +20,7 @@
     function EditConfigController($scope, $http, $cookieStore) {
         var vm = this;
         vm.title = 'Edit Site';
+        vm.message = "This page helps you to modify given parameters of the public site. Such as creating a new news article";
 
         vm.successAlert = false;
         vm.failureAlert = false;

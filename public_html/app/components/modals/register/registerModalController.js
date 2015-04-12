@@ -125,16 +125,16 @@
 
             $scope.userData.emailInvalid = false ;
             $scope.userData.passwordInvalid = false ;
-
-            pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ ;
-            re = new RegExp( pattern ) ; // a regular expression
-            test = re.test( $scope.userData.password ) ;
-            console.log( test ) ;
-            if ( $scope.userData.password !== undefined &&!test ){
-                console.log( "password invalid" ) ;
-                $scope.userData.passwordInvalid = true ;
-                ret = false ;
-            }
+            //
+            //pattern = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/ ;
+            //re = new RegExp( pattern ) ; // a regular expression
+            //test = re.test( $scope.userData.password ) ;
+            //console.log( test ) ;
+            //if ( $scope.userData.password !== undefined &&!test ){
+            //    console.log( "password invalid" ) ;
+            //    $scope.userData.passwordInvalid = true ;
+            //    ret = false ;
+            //}
 
             pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i ;
             re = new RegExp( pattern ) ; // a regular expression
