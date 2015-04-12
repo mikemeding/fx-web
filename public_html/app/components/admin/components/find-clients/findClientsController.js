@@ -36,6 +36,21 @@
             $scope.data.year = choice;
         }
 
+        /**
+         * Slider range stuff
+         * @type {{}}
+         */
+        $scope.range = {};
+        $scope.range.min = 10000;
+        $scope.range.max = 9999999;
+        $scope.range.step = 100000; // slider increments
+        $scope.range.minimumValue = 100000; // starting value of slider
+        $scope.range.maximumValue = 200000; // starting value of slider
+
+
+
+
+
         $scope.data = {}
         $scope.tableData = [];
         $scope.tableVisibility = false;
@@ -49,7 +64,7 @@
 
             var request = {
                 method: 'GET',
-                url: 'http://www.mikemeding.com/fx/appraisal/getAppraisalDataInAssessedRange/' + $scope.data.year + '/' + $scope.data.fromValue + '/' + $scope.data.toValue
+                url: 'http://www.mikemeding.com/fx/appraisal/getAppraisalDataInAssessedRange/' + $scope.data.year + '/' + $scope.range.minimumValue + '/' + $scope.range.maximumValue
             };
 
             console.log(request);

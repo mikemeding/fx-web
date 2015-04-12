@@ -37,13 +37,17 @@
                 </div>
                 <div class="form-group">
                     <label for="fromValue">From Value</label>
-                    <input id="fromValue" ng-model="vm.data.fromValue" type="number" class="form-control"
-                           placeholder="From Value">
+                    <input id="fromValue" type="range" min="{{vm.range.min}}" max="{{vm.range.max}}" step="{{vm.range.step}}" value="{{vm.range.value}}" ng-model="vm.range.minimumValue" />
+                    <p>${{vm.range.minimumValue}}</p>
+
+                    <!--<input id="fromValue" ng-model="vm.data.fromValue" type="number" class="form-control"-->
+                           <!--placeholder="From Value">-->
                 </div>
                 <div class="form-group">
                     <label for="toValue">To Value</label>
-                    <input id="toValue" ng-model="vm.data.toValue" type="number" class="form-control"
-                           placeholder="To Value">
+                    <!--<input id="toValue" ng-model="vm.data.toValue" type="number" class="form-control"-->
+                    <input id="toValue" type="range" min="{{vm.range.min}}" max="{{vm.range.max}}" step="{{vm.range.step}}" value="{{vm.range.value}}" ng-model="vm.range.maximumValue" />
+                    <p>${{vm.range.maximumValue}}</p>
                 </div>
 
                 <button class="btn btn-primary" type="submit">Search</button>
