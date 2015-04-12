@@ -1,14 +1,12 @@
 <div class="modal-header">
-    <h3 class="modal-title">Tax Breakdown</h3>
-    <a class="pull-right" ng-click="cancel()">&#x2715;</a>
+    <h3 class="modal-title">Tax Breakdown <a class="pull-right" ng-click="cancel()">&#x2715;</a></h3>
+
 </div>
 
+<!--this relies on having the update chart function-->
 <div class="modal-body">
-    <div ng-click="updateChart()"  google-chart="PieChart" ng-model="data1" class="bigGraph"></div>
+    <div ng-click="updateChart()" google-chart="PieChart" ng-model="data1" class="bigGraph"></div>
 </div>
 
 
-<!--<div class="modal-footer">-->
-    <!--&lt;!&ndash;<button class="btn btn-primary" ng-click="ok()">OK</button>&ndash;&gt;-->
-    <!--<button class="btn btn-default" ng-click="cancel()">Close</button>-->
-<!--</div>-->
+

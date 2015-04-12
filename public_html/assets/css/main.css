@@ -22,7 +22,7 @@ h3.h3-brand {
 }
 
 /*ui bootstrap cursor hotfix*/
-.nav, .pagination, .carousel, .panel-title, a , tr {
+.nav, .pagination, .carousel, .panel-title, a, tr {
     cursor: pointer;
 }
 
@@ -35,24 +35,22 @@ textarea {
     resize: none;
 }
 
-
 /*Google graph sizes*/
 .bigGraph {
     width: 500px;
     height: 500px;
-    float: left;
 }
 
 .mediumGraph {
     width: 400px;
     height: 400px;
-    float: left;
+
 }
 
 .smallGraph {
     width: 200px;
     height: 200px;
-    float: left;
+
 }
 
 

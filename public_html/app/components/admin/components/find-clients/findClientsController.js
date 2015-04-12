@@ -17,7 +17,7 @@
         .controller("FindClientsController",
         ["$scope", "$http", "$modal", FindClientsController])
         .controller("GoogleChartController",
-        ["$scope", "$modalInstance", "$http", "propertyInfo", GoogleChartController]);
+        ["$scope", "$modalInstance", "$http", "propertyInfo", "$timeout", GoogleChartController]);
 
     function FindClientsController($scope, $http, $modal) {
         var $scope = this;
@@ -42,15 +42,11 @@
          * @type {{}}
          */
         $scope.range = {};
-        $scope.range.min = 10000;
-        $scope.range.max = 9999999;
+        $scope.range.min = 100000;
+        $scope.range.max = 9000000;
         $scope.range.step = 100000; // slider increments
         $scope.range.minimumValue = 100000; // starting value of slider
-        $scope.range.maximumValue = 200000; // starting value of slider
-
-
-
-
+        $scope.range.maximumValue = 100000; // starting value of slider
 
         $scope.data = {}
         $scope.tableData = [];
@@ -84,6 +80,10 @@
                 });
         }
 
+        /**
+         * Opens the modal view with google pie chart
+         * @type {{}}
+         */
         $scope.propertyInfo = {};
         $scope.openDetailedView = function (data) {
             //console.log(data);
@@ -100,12 +100,13 @@
             });
         }
 
+
     }
 
     /**
      * Testing some charting stuff
      */
-    function GoogleChartController($scope, $modalInstance, $http, propertyInfo) {
+    function GoogleChartController($scope, $modalInstance, $http, propertyInfo, $timeout) {
         console.log(propertyInfo);
 
         $scope.showChart = false;
@@ -122,7 +123,7 @@
          */
         var request = {
             method: 'GET',
-            url: 'http://www.mikemeding.com/fx/appraisal/getTaxBreakdown/'+propertyInfo.taxYear+'/'+propertyInfo.pid+'/full'
+            url: 'http://www.mikemeding.com/fx/appraisal/getTaxBreakdown/' + propertyInfo.taxYear + '/' + propertyInfo.pid + '/full'
         };
         $scope.rawData = {};
         $http(request)
@@ -144,22 +145,33 @@
             $modalInstance.dismiss('cancel');
         };
 
-        $scope.updateThisChart = function(data){
-
-            // iterate through all taxing entities
-            angular.forEach(data, function(value, key) {
-                console.log(key + ': ' + value);
-                $scope.data1.dataTable.addRow([key,parseInt(value)]);
-            });
-            //$scope.data1.dataTable.draw($scope.data1.dataTable);
-            //$scope.data1.dataTable.addRow(["Test", 1]);
-            //$scope.data1.dataTable.addRow(["Test2", 2]);
-            //$scope.data1.dataTable.addRow(["Test3", 8]);
-            updateChart();
-            $scope.showChart = true;
+        /**
+         * Set the directive function to allow for update hook
+         * http://stackoverflow.com/questions/16881478/how-to-call-a-method-defined-in-an-angularjs-directive
+         * @param directiveFn
+         */
+        $scope.setDirectiveFunction = function (directiveFn) {
+            $scope.directiveFunction = directiveFn;
         }
 
+        /**
+         * update google chart with new info
+         * @param data
+         */
+        $scope.updateThisChart = function (data) {
+            // iterate through all taxing entities
+            angular.forEach(data, function (value, key) {
+                console.log(key + ': ' + value);
+                $scope.data1.dataTable.addRow([key, parseInt(value)]);
+            });
 
+            // must have timeout. allows for load propogation.
+            // TODO: there must be some kind of solution to this...
+            $timeout(function () {
+                angular.element("[google-chart]").trigger("click");
+                $scope.showChart = true;
+            }, 100);
+        }
 
     }
 }());

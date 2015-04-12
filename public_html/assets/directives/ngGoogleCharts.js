@@ -12,16 +12,22 @@
             link: function ($scope, $elem, $attr) {
                 var dt = $scope[$attr.ngModel].dataTable;
 
-                var options = {};
+                var options = {
+                    animation: {
+                        duration: 1000,
+                        easing: 'inAndOut'
+                    }
+                };
                 if ($scope[$attr.ngModel].title)
                     options.title = $scope[$attr.ngModel].title;
 
                 var googleChart = new google.visualization[$attr.googleChart]($elem[0]);
-                googleChart.draw(dt, options)
+                googleChart.draw(dt, options);
 
-                $scope.updateChart = function(){
+                $scope.updateChart = function () {
                     googleChart.draw(dt, options);
                 }
+
             }
         }
     });
